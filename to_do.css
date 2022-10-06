@@ -1,13 +1,15 @@
 /* Basic Style */
 body {
-    background: #fff;
-    color: #333;
+    background-image: url(https://github.com/w3ssfs/ToDo_List/blob/main/assets/image/image.jpg?raw=true);
+    color: rgb(0, 0, 0);
     font-family: Lato, sans-serif;
   }
   .container {
     display: block;
     width: 400px;
     margin: 100px auto 0;
+    background-color: rgb(250, 249, 249);
+    border-radius: 15px;
   }
   ul {
     margin: 0;
@@ -26,7 +28,7 @@ body {
   button {
     background: none;
     border: 0px;
-    color: #888;
+    color: rgb(0, 0, 0);
     font-size: 15px;
     width: 60px;
     margin: 10px 0 0;
@@ -34,12 +36,12 @@ body {
     cursor: pointer;
   }
   button:hover {
-    color: #333;
+    color: rgb(0, 0, 0);
   }
   /* Heading */
   h3,
   label[for='new-task'] {
-    color: #333;
+    color: rgb(0, 0, 0);
     font-weight: 700;
     font-size: 15px;
     border-bottom: 2px solid #333;
@@ -57,10 +59,10 @@ body {
     background: #fff;
     border-radius: 6px;
     font-family: Lato, sans-serif;
-    color: #888;
+    color: rgb(0, 0, 0);
   }
   input[type="text"]:focus {
-    color: #333;
+    color: rgb(0, 0, 0);
   }
   
   /* New Task */
@@ -80,7 +82,7 @@ body {
   li {
     overflow: hidden;
     padding: 20px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgb(0, 0, 0);
   }
   li > input[type="checkbox"] {
     margin: 0 10px;
@@ -103,7 +105,7 @@ body {
   /* Completed */
   #completed-tasks label {
     text-decoration: line-through;
-    color: #888;
+    color: rgb(0, 0, 0);
   }
   
   /* Edit Task */
