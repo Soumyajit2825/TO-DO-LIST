@@ -1,3 +1,4 @@
+
 /*root styles*/
 *{
   margin: 0;
@@ -25,7 +26,7 @@ input[type="text"]{
 }
 /* Basic Style */
 body {
-  background-image: url(https://github.com/w3ssfs/ToDo_List/blob/main/assets/image/image.jpg?raw=true);
+  background-image: url(images/texture_background_2.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   color: rgb(0, 0, 0);
@@ -124,3 +125,4 @@ ul li.editMode input[type=text] {
 ul li.editMode label {
   display: none;
 } 
+
