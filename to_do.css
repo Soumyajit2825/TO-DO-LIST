@@ -1,125 +1,126 @@
+/*root styles*/
+*{
+  margin: 0;
+  padding:0 ;
+  box-sizing: border-box;
+  list-style: none;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+button{
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+input[type="text"]{
+  border: 0.25px solid rgba(128, 128, 128, 0.8);
+  outline: none;
+  background-color: transparent;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
 /* Basic Style */
 body {
-    background-image: url(https://github.com/w3ssfs/ToDo_List/blob/main/assets/image/image.jpg?raw=true);
-    color: rgb(0, 0, 0);
-    font-family: Lato, sans-serif;
-  }
-  .container {
-    display: block;
-    width: 400px;
-    margin: 100px auto 0;
-    background-color: rgb(250, 249, 249);
-    border-radius: 0px;
-  }
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-  li * {
-    float: left;
-  }
-  li, h3 {
-    clear:both;
-    list-style:none;
-  }
-  input, button {
-    outline: none;
-  }
-  button {
-    background:wheat;
-    border: 3px blueviolet solid;
-    color: rgb(0, 0, 0);
-    font-size: 15px;
-    width: 60px;
-    margin: 10px 10px 0;
-    font-family: Lato, sans-serif;
-    cursor: pointer;
-  }
-  button:hover {
-    color: rgb(0, 0, 0);
-    background: greenyellow;
-  }
-  /* Heading */
-  h3,
-  label[for='new-task'] {
-    color: rgb(0, 0, 0);
-    font-weight: 700;
-    font-size: 15px;
-    border-bottom: 3px solid #333;
-    padding: 8px 140px 10px;
-    margin: 0;
-    text-transform: uppercase;
-  }
-  input[type="text"] {
-    margin: 12;
-    font-size: 18px;
-    line-height: 18px;
-    height: 18px;
-    padding: 10px;
-    border: 2px solid #ddd;
-    background:seashell;
-    border-radius: 6px;
-    font-family: Lato, sans-serif;
-    color: rgb(0, 0, 0);
-  }
-  input[type="text"]:focus {
-    color: rgb(0, 0, 0);
-    background:white;
-  }
-  
-  /* New Task */
-  label[for='new-task'] {
-    display: block;
-    margin: 0 0 20px;
-  }
-  input#new-task {
-    float: center;
-    width: 318px;
-  }
-  p > button:hover {
-    color: #0FC57C;
+  background-image: url(https://github.com/w3ssfs/ToDo_List/blob/main/assets/image/image.jpg?raw=true);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: rgb(0, 0, 0);
+  font-family: 'Lato', sans-serif;
+  min-height: 100vh;
+  padding-block: 5rem;
+}
 
-  }
-  
-  /* Task list */
-  li {
-    overflow: hidden;
-    padding: 20px 0;
-    border-bottom: 1px solid rgb(0, 0, 0);
-  }
-  li > input[type="checkbox"] {
-    margin: 0 10px;
-    position: relative;
-    top: 15px;
-  }
-  li > label {
-    font-size: 18px;
-    line-height: 40px;
-    width: 237px;
-    padding: 0 0 0 11px;
-  }
-  li >  input[type="text"] {
-    width: 226px;
-  }
-  li > .delete:hover {
-    color:#0FC57C;
-  }
-  
-  /* Completed */
-  #completed-tasks label {
-    text-decoration: line-through;
-    color: rgb(0, 0, 0);
-  }
-  
-  /* Edit Task */
-  ul li input[type=text] {
-    display:none;
-  }
-  
-  ul li.editMode input[type=text] {
-    display:block;
-  }
-  
-  ul li.editMode label {
-    display:none;
-  }
+.todo-container {
+  width: 100%;
+  max-width: 400px;
+  margin-inline:auto;
+  background-color: rgb(250, 249, 249);
+  border-radius: 10px;
+}
+
+.add-todo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 1rem;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.add-todo input::placeholder{
+  color: rgba(128, 128, 128, 0.8);
+  font-weight: 700;
+  caret-color: rgba(128, 128, 128, 0.8);
+}
+
+.btn-add{
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(84, 115, 64);
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 0 4px 0 rgba(84, 115, 64, 0.8);
+}
+
+.completed-tasks-container,.incomplete-tasks-container{
+  padding: 1rem;
+}
+
+.incomplete-tasks-container{
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.title{
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color:  rgb(84, 115, 64);
+  text-align: center;
+}
+#incomplete-tasks,#completed-tasks{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.incomplete-task,.completed-task{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+.completed-task label {
+  text-decoration: line-through;
+  color: rgba(128, 128, 128, 0.8);
+}
+.btn-edit{
+  margin-left: auto;
+}
+.btn-edit,.btn-delete{
+  background-color: white;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+/* Edit Task */
+ul li input[type=text] {
+  display: none;
+}
+
+ul li.editMode input[type=text] {
+  display: block;
+}
+
+ul li.editMode label {
+  display: none;
+} 
