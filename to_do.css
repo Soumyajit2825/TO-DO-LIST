@@ -6,6 +6,14 @@
   box-sizing: border-box;
   list-style: none;
 }
+i{
+  font-size: 60px;
+  cursor: pointer;
+  position: absolute;
+  top: 6%;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+}
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
@@ -26,7 +34,6 @@ input[type="text"]{
 }
 /* Basic Style */
 body {
-  background-image: url(images/texture_background_2.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   color: rgb(0, 0, 0);
@@ -35,7 +42,7 @@ body {
   padding-block: 5rem;
 }
 
-.todo-container {
+.todo-container{
   width: 100%;
   max-width: 400px;
   margin-inline:auto;
