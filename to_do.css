@@ -68,15 +68,22 @@ body {
   font-weight: 700;
   cursor: pointer;
   outline: none;
+  transition: .3s;
   box-shadow: 0 0 4px 0 rgba(84, 115, 64, 0.8);
+}
+.btn-add:hover{
+  box-shadow: 0 0 7px 3px #444;
 }
 
 .completed-tasks-container,.incomplete-tasks-container{
   padding: 1rem;
+  box-shadow: 0 3px 5px #333;
 }
 
 .incomplete-tasks-container{
   border-bottom: 1px solid rgb(0, 0, 0);
+  box-shadow: 0 3px 5px #333;
+
 }
 
 .title{
@@ -104,6 +111,7 @@ body {
 .btn-edit{
   margin-left: auto;
 }
+
 .btn-edit,.btn-delete{
   background-color: white;
   width: 35px;
@@ -112,6 +120,17 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
+  transition: .3s;
+  transform: scale(1);
+  cursor: pointer;
+}
+.btn-delete:hover{
+  transition: .3s;
+  transform: scale(1.1); 
+}
+.btn-edit:hover{  
+  transition: .3s;
+  transform: scale(1.1); 
 }
 /* Edit Task */
 ul li input[type=text] {
@@ -120,6 +139,7 @@ ul li input[type=text] {
 
 ul li.editMode input[type=text] {
   display: block;
+  box-shadow: 0 3px 4px #444;
 }
 
 ul li.editMode label {
