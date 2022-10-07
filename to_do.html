@@ -1,16 +1,19 @@
 <html>
   <head>
     <title>Todo App</title>
-    <!-- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
     <link rel="stylesheet" href="to_do.css" type="text/css" media="screen" charset="utf-8">    
   </head>
   <body>
     <div class="container">
       <p>
-        <label for="new-task">Add Item</label><input id="new-task" type="text"><button>Add</button>
+        <label for="new-task">Add a Task</label>
+        
+        <input id="new-task" placeholder="What Have You Planned?" type="text">
+        
+        <button>Add</button>
       </p>
       
-      <h3>Todo</h3>
+      <h3>To Be Done</h3>
       <ul id="incomplete-tasks">
         <li><input type="checkbox"><label>Pay Bills</label><input type="text"><button class="edit">Edit</button><button class="delete">Delete</button></li>
       </ul>

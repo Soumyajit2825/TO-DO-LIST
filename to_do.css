@@ -1,8 +1,16 @@
 /* Basic Style */
+:root {
+	--dark: #374151;
+	--darker: #1F2937;
+	--darkest: #111827;
+	--grey: #6B7280;
+	--pink: #EC4899;
+	--purple: #8B5CF6;
+	--light: #EEE;
+}
 body {
-    background-image: url(https://github.com/w3ssfs/ToDo_List/blob/main/assets/image/image.jpg?raw=true);
-    color: rgb(0, 0, 0);
-    font-family: Lato, sans-serif;
+  background-color: var(--dark);
+      font-family: Lato, sans-serif;
   }
   .container {
     display: block;
@@ -25,19 +33,25 @@ body {
   input, button {
     outline: none;
   }
+  h3{
+
+    background-color: rgb(115, 115, 150);
+  }
+ 
   button {
-    background:wheat;
-    border: 3px blueviolet solid;
-    color: rgb(0, 0, 0);
+    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    color: rgb(233, 233, 233);
     font-size: 15px;
     width: 60px;
     margin: 10px 10px 0;
     font-family: Lato, sans-serif;
     cursor: pointer;
   }
+  button.delete{
+    background-color: red;
+  }
   button:hover {
-    color: rgb(0, 0, 0);
-    background: greenyellow;
+    opacity: 0.8;
   }
   /* Heading */
   h3,
@@ -56,28 +70,30 @@ body {
     line-height: 18px;
     height: 18px;
     padding: 10px;
-    border: 2px solid #ddd;
+    margin-left: 33px;
+    border: 2px solid rgb(8, 7, 7);
     background:seashell;
     border-radius: 6px;
     font-family: Lato, sans-serif;
     color: rgb(0, 0, 0);
   }
   input[type="text"]:focus {
-    color: rgb(0, 0, 0);
+    color: rgb(37, 19, 19);
     background:white;
   }
   
   /* New Task */
   label[for='new-task'] {
     display: block;
+    background-color: rgb(115, 115, 150);
     margin: 0 0 20px;
   }
   input#new-task {
     float: center;
-    width: 318px;
+
   }
   p > button:hover {
-    color: #0FC57C;
+    color: #10412d;
 
   }
   
