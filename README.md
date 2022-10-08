@@ -54,7 +54,7 @@ A simple to-do-list webpage
 
 **9.** Setup a reference(remote) to the original repository to get all the changes from the remote.
 ```
-   git remote add upstream https://github.com/Soumyajit2825/MESSI_MANIA.git
+   git remote add upstream https://github.com/Soumyajit2825/TO-DO-LIST.git
 ```
 
 **10.** Check the remotes for this repository.
@@ -85,14 +85,6 @@ Here are a few things you can do that will increase the likelihood of your pull 
 - Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 
 Work in Progress pull requests are also welcome to get feedback early on, or if there is something blocking you from working further.
-
-## Resources
-
-- [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
-- [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
-- [GitHub Help](https://help.github.com)
-
-Please make sure to update tests as appropriate.
 ## Contributors ✨
 
 Thanks goes to these wonderful people 💜
@@ -106,5 +98,13 @@ Thanks goes to these wonderful people 💜
     <td align="center"><a href="https://github.com/w3ssfs"><img src="https://avatars.githubusercontent.com/u/85897421?v=4" width="100px;" alt=""/><br /><sub><b>Wesley</b></sub></a><br /><a title="Code">💻</a></td>
   </tr>
   </table>
+## Resources
+
+- [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
+- [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
+- [GitHub Help](https://help.github.com)
+
+Please make sure to update tests as appropriate.
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
