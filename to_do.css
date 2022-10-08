@@ -3,7 +3,7 @@
 *{
   margin: 0;
   padding:0 ;
-  box-sizing: border-box;
+  box-sizing: content-box;
   list-style: none;
 }
 i{
@@ -41,10 +41,12 @@ body {
   min-height: 100vh;
   padding-block: 5rem;
 }
-
+#new-task{
+  font-size: 40px;
+}
 .todo-container{
   width: 100%;
-  max-width: 400px;
+  max-width: 900px;
   margin-inline:auto;
   background-color: rgb(250, 249, 249);
   border-radius: 10px;
@@ -73,6 +75,7 @@ body {
   background-color: rgb(84, 115, 64);
   color: rgb(255, 255, 255);
   font-weight: 700;
+  font-size: 40px;
   cursor: pointer;
   outline: none;
   transition: .3s;
@@ -85,16 +88,18 @@ body {
 .completed-tasks-container,.incomplete-tasks-container{
   padding: 1rem;
   box-shadow: 0 3px 5px #333;
+  font-size: 40px;
 }
 
 .incomplete-tasks-container{
   border-bottom: 1px solid rgb(0, 0, 0);
+  
   box-shadow: 0 3px 5px #333;
 
 }
 
 .title{
-  font-size: 1.5rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color:  rgb(84, 115, 64);
