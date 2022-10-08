@@ -98,7 +98,8 @@ Thanks goes to these wonderful people 💜
     <td align="center"><a href="https://github.com/w3ssfs"><img src="https://avatars.githubusercontent.com/u/85897421?v=4" width="100px;" alt=""/><br /><sub><b>Wesley</b></sub></a><br /><a title="Code">💻</a></td>
   </tr>
   </table>
-## Resources
+
+## Resources 
 
 - [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
 - [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
