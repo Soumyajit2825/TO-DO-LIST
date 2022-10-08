@@ -20,12 +20,12 @@ A simple to-do-list webpage
 
 **2.** Clone the forked repository.
 ```
-   git clone https://github.com/Soumyajit2825/MESSI_MANIA.git
+   git clone https://github.com/YOUR_USERNAME/TO-DO-LIST.git
 ```
 
 **3.** Navigate to the project directory.
 ```
-   cd MESSI_MANIA
+   cd TO-DO-LIST
 ```
 
 **4.** Create a new branch:
@@ -94,5 +94,15 @@ Work in Progress pull requests are also welcome to get feedback early on, or if 
 
 Please make sure to update tests as appropriate.
 
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Soumyajit2825"><img src="https://avatars.githubusercontent.com/u/100519291?v=4" width="100px;" alt=""/><br /><sub><b>Soumyajit Mondal</b></sub></a><br /><a href="#maintenance-Tlazypanda" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/pnkjxmwl"><img src="https://avatars.githubusercontent.com/u/81282394?v=4" width="100px;" alt=""/><br /><sub><b>Pankaj Semwal</b></sub></a><br /><a title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/vilasrhegde"><img src="https://avatars.githubusercontent.com/u/85540091?v=4" width="100px;" alt=""/><br /><sub><b>Vilas Hegde</b></sub></a><br /><a  title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Urmilasc"><img src="https://avatars2.githubusercontent.com/u/46655706?v=4" width="100px;" alt=""/><br /><sub><b>Urmila Choudhary</b></sub></a><br /> <a  title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Chaitanya-087"><img src="https://avatars.githubusercontent.com/u/76115770?v=4" width="100px;" alt=""/><br /><sub><b>Jonnadula Chaitanya</b></sub></a><br /><a  title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/w3ssfs"><img src="https://avatars.githubusercontent.com/u/85897421?v=4" width="100px;" alt=""/><br /><sub><b>Wesley</b></sub></a><br /><a title="Documentation">📖</a></td>
+  </tr>
+  </table>
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
