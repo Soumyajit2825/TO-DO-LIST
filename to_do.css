@@ -68,8 +68,9 @@ body {
 }
 
 .btn-add{
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
+  /* padding-block: 0.5rem;
+  padding-inline: 1rem; */
+  padding: 5px;
   border: none;
   border-radius: 5px;
   background-color: rgb(84, 115, 64);
@@ -158,3 +159,16 @@ ul li.editMode label {
   display: none;
 } 
 
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+  #new-task{
+    font-size: 20px;
+  }
+  .btn-add{
+    
+     font-size: 20px; 
+    }
+}
