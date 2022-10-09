@@ -82,19 +82,23 @@ var editTask = function () {
 	console.log("Change 'edit' to 'save'");
 
 
+
 	var listItem = this.parentNode;
 
 	var editInput = listItem.querySelector('input[type=text]');
 	var label = listItem.querySelector("label");
 	var containsClass = listItem.classList.contains("editMode");
+	const editButtonIcon = listItem.getElementsByClassName("btn-edit");
 	//If class of the parent is .editmode
 	if (containsClass) {
 
 		//switch to .editmode
 		//label becomes the inputs value.
 		label.innerText = editInput.value;
+		editButtonIcon[0].innerHTML = `<img src="https://img.icons8.com/material/24/547340/edit--v1.png"/>`;
 	} else {
 		editInput.value = label.innerText;
+		editButtonIcon[0].innerHTML = `<img src="https://img.icons8.com/material/24/000000/checkmark--v1.png"/>`;
 	}
 
 	//toggle .editmode on the parent.
