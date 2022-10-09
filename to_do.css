@@ -167,9 +167,6 @@ ul li.editMode label {
 }
 
 @media only screen and (max-width: 600px) {
-  body {
-    background-color: lightblue;
-  }
   #new-task {
     font-size: 20px;
   }
