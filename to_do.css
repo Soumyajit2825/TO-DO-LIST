@@ -5,6 +5,7 @@
   box-sizing: content-box;
   list-style: none;
 }
+
 i {
   font-size: 60px;
   cursor: pointer;
@@ -13,16 +14,19 @@ i {
   left: 50vw;
   transform: translate(-50%, -50%);
 }
+
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
+
 button {
   cursor: pointer;
   background-color: transparent;
   border: none;
   outline: none;
 }
+
 input[type="text"] {
   border: 0.25px solid rgba(128, 128, 128, 0.8);
   outline: none;
@@ -31,6 +35,7 @@ input[type="text"] {
   padding: 0.5rem;
   border-radius: 5px;
 }
+
 /* Basic Style */
 body {
   background-size: cover;
@@ -40,9 +45,11 @@ body {
   min-height: 100vh;
   padding-block: 5rem;
 }
+
 #new-task {
   font-size: 40px;
 }
+
 .todo-container {
   width: 100%;
   max-width: 900px;
@@ -83,6 +90,7 @@ body {
   transition: 0.3s;
   box-shadow: 0 0 4px 0 rgba(84, 115, 64, 0.8);
 }
+
 .btn-add:hover {
   box-shadow: 0 0 7px 3px #444;
 }
@@ -99,7 +107,6 @@ body {
 
 .incomplete-tasks-container {
   border-bottom: 1px solid rgb(0, 0, 0);
-
   box-shadow: 0 3px 5px #333;
 }
 
@@ -110,12 +117,14 @@ body {
   color: rgb(84, 115, 64);
   text-align: center;
 }
+
 #incomplete-tasks,
 #completed-tasks {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .incomplete-task,
 .completed-task {
   display: flex;
@@ -123,10 +132,12 @@ body {
   gap: 0.5rem;
   width: 100%;
 }
+
 .completed-task label {
   text-decoration: line-through;
   color: rgba(128, 128, 128, 0.8);
 }
+
 .btn-edit {
   margin-left: auto;
 }
@@ -152,6 +163,7 @@ body {
   transition: 0.3s;
   transform: scale(1.1);
 }
+
 /* Edit Task */
 ul li input[type="text"] {
   display: none;
@@ -166,10 +178,66 @@ ul li.editMode label {
   display: none;
 }
 
+
+/* Dark/Light mode toggler css starts here */
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  width: 44px;
+  height: 17px;
+  background-color: #515151;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+  margin-right: 1.2em;
+}
+
+.ball {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked+.label .ball {
+  transform: translateX(24px);
+}
+
+.bi-brightness-high-fill::before {
+  margin: 27px;
+  color: yellow;
+}
+
+.dark-mode-slider {
+  padding-bottom: 2em;
+  display: flex;
+  justify-content: end;
+  max-width: 900px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+/* Dark/Light mode toggler css ends here */
+
+
 @media only screen and (max-width: 600px) {
   body {
     background-color: lightblue;
   }
+  
   #new-task {
     font-size: 20px;
   }
