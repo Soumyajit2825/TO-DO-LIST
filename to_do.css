@@ -172,3 +172,7 @@ ul li.editMode label {
      font-size: 20px; 
     }
 }
+
+.label-container{
+  word-break: break-all;
+}

@@ -33,6 +33,7 @@ var createNewTaskElement = function (taskString) {
 
 	label.innerText = taskString;
 	listItem.className = "incomplete-task"
+	label.className = "label-container"
 	//Each elements, needs appending
 	checkBox.type = "checkbox";
 	editInput.type = "text";
