@@ -1,12 +1,12 @@
-
 /*root styles*/
-*{
+* {
   margin: 0;
-  padding:0 ;
+  padding: 0;
   box-sizing: content-box;
   list-style: none;
 }
-i{
+
+i {
   font-size: 60px;
   cursor: pointer;
   position: absolute;
@@ -14,17 +14,20 @@ i{
   left: 50vw;
   transform: translate(-50%, -50%);
 }
+
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
-button{
+
+button {
   cursor: pointer;
   background-color: transparent;
   border: none;
   outline: none;
 }
-input[type="text"]{
+
+input[type="text"] {
   border: 0.25px solid rgba(128, 128, 128, 0.8);
   outline: none;
   background-color: transparent;
@@ -32,6 +35,7 @@ input[type="text"]{
   padding: 0.5rem;
   border-radius: 5px;
 }
+
 /* Basic Style */
 body {
   background-size: cover;
@@ -41,18 +45,20 @@ body {
   min-height: 100vh;
   padding-block: 5rem;
 }
-#new-task{
+
+#new-task {
   font-size: 40px;
 }
-.todo-container{
+
+.todo-container {
   width: 100%;
   max-width: 900px;
-  margin-inline:auto;
+  margin-inline: auto;
   background-color: rgb(250, 249, 249);
   border-radius: 10px;
 }
 
-.add-todo{
+.add-todo {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -61,13 +67,13 @@ body {
   border-bottom: 1px solid rgb(0, 0, 0);
 }
 
-.add-todo input::placeholder{
+.add-todo input::placeholder {
   color: rgba(128, 128, 128, 0.8);
   font-weight: 700;
   caret-color: rgba(128, 128, 128, 0.8);
 }
 
-.btn-add{
+.btn-add {
   /* padding-block: 0.5rem;
   padding-inline: 1rem; */
   padding: 5px;
@@ -82,50 +88,59 @@ body {
   transition: .3s;
   box-shadow: 0 0 4px 0 rgba(84, 115, 64, 0.8);
 }
-.btn-add:hover{
+
+.btn-add:hover {
   box-shadow: 0 0 7px 3px #444;
 }
 
-.completed-tasks-container,.incomplete-tasks-container{
+.completed-tasks-container,
+.incomplete-tasks-container {
   padding: 1rem;
   box-shadow: 0 3px 5px #333;
   font-size: 40px;
 }
 
-.incomplete-tasks-container{
+.incomplete-tasks-container {
   border-bottom: 1px solid rgb(0, 0, 0);
-  
+
   box-shadow: 0 3px 5px #333;
 
 }
 
-.title{
+.title {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color:  rgb(84, 115, 64);
+  color: rgb(84, 115, 64);
   text-align: center;
 }
-#incomplete-tasks,#completed-tasks{
+
+#incomplete-tasks,
+#completed-tasks {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.incomplete-task,.completed-task{
+
+.incomplete-task,
+.completed-task {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   width: 100%;
 }
+
 .completed-task label {
   text-decoration: line-through;
   color: rgba(128, 128, 128, 0.8);
 }
-.btn-edit{
+
+.btn-edit {
   margin-left: auto;
 }
 
-.btn-edit,.btn-delete{
+.btn-edit,
+.btn-delete {
   background-color: white;
   width: 35px;
   height: 35px;
@@ -137,14 +152,17 @@ body {
   transform: scale(1);
   cursor: pointer;
 }
-.btn-delete:hover{
+
+.btn-delete:hover {
   transition: .3s;
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
-.btn-edit:hover{  
+
+.btn-edit:hover {
   transition: .3s;
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
+
 /* Edit Task */
 ul li input[type=text] {
   display: none;
@@ -157,18 +175,72 @@ ul li.editMode input[type=text] {
 
 ul li.editMode label {
   display: none;
-} 
+}
 
+/* Dark/Light mode toggler css starts here */
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  width: 44px;
+  height: 17px;
+  background-color: #515151;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.ball {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked+.label .ball {
+  transform: translateX(24px);
+}
+
+.bi-brightness-high-fill::before {
+  margin: 27px;
+  color: yellow;
+}
+
+.dark-mode-slider {
+  padding-bottom: 2em;
+  display: flex;
+  justify-content: end;
+  max-width: 900px;
+  width: 100%;
+  padding-right: 1em;
+  margin-inline: auto;
+}
+
+/* Dark/Light mode toggler css ends here */
 
 @media only screen and (max-width: 600px) {
   body {
     background-color: lightblue;
   }
-  #new-task{
+
+  #new-task {
     font-size: 20px;
   }
-  .btn-add{
-    
-     font-size: 20px; 
-    }
+
+  .btn-add {
+
+    font-size: 20px;
+  }
 }
