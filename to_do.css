@@ -180,4 +180,5 @@ ul li.editMode label {
 
 .label-container {
   word-break: break-all;
+  width: 85%;
 }
