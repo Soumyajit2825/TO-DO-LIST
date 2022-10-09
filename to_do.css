@@ -184,6 +184,7 @@ ul li.editMode label {
 }
 
 .label {
+  cursor: pointer;
   width: 44px;
   height: 17px;
   background-color: #515151;
