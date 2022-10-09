@@ -195,6 +195,7 @@ ul li.editMode label {
   padding: 5px;
   position: relative;
   transform: scale(1.5);
+  margin-right: 1.2em;
 }
 
 .ball {
@@ -224,7 +225,6 @@ ul li.editMode label {
   justify-content: end;
   max-width: 900px;
   width: 100%;
-  padding-right: 1em;
   margin-inline: auto;
 }
 
