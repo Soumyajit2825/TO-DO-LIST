@@ -47,7 +47,7 @@ body {
 }
 
 #new-task {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .todo-container {
@@ -71,20 +71,20 @@ body {
 
 .add-todo input::placeholder {
   color: rgba(128, 128, 128, 0.8);
-  font-weight: 700;
+  font-weight: 500;
   caret-color: rgba(128, 128, 128, 0.8);
 }
 
 .btn-add {
   /* padding-block: 0.5rem;
   padding-inline: 1rem; */
-  padding: 5px;
+  padding: 8px 16px;
   border: none;
   border-radius: 5px;
   background-color: rgb(84, 115, 64);
   color: rgb(255, 255, 255);
   font-weight: 700;
-  font-size: 40px;
+  font-size: 30px;
   cursor: pointer;
   outline: none;
   transition: 0.3s;
@@ -102,7 +102,7 @@ body {
   overflow-y: scroll;
   padding: 1rem;
   box-shadow: 0 3px 5px #333;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .incomplete-tasks-container {
