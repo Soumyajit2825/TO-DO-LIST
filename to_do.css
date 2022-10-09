@@ -1,12 +1,11 @@
-
 /*root styles*/
-*{
+* {
   margin: 0;
-  padding:0 ;
+  padding: 0;
   box-sizing: content-box;
   list-style: none;
 }
-i{
+i {
   font-size: 60px;
   cursor: pointer;
   position: absolute;
@@ -18,13 +17,13 @@ html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
-button{
+button {
   cursor: pointer;
   background-color: transparent;
   border: none;
   outline: none;
 }
-input[type="text"]{
+input[type="text"] {
   border: 0.25px solid rgba(128, 128, 128, 0.8);
   outline: none;
   background-color: transparent;
@@ -37,22 +36,24 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   color: rgb(0, 0, 0);
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   min-height: 100vh;
   padding-block: 5rem;
 }
-#new-task{
+#new-task {
   font-size: 40px;
 }
-.todo-container{
+.todo-container {
   width: 100%;
   max-width: 900px;
-  margin-inline:auto;
+  max-height: 300px;
+  height: 500px;
+  margin-inline: auto;
   background-color: rgb(250, 249, 249);
   border-radius: 10px;
 }
 
-.add-todo{
+.add-todo {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -61,13 +62,13 @@ body {
   border-bottom: 1px solid rgb(0, 0, 0);
 }
 
-.add-todo input::placeholder{
+.add-todo input::placeholder {
   color: rgba(128, 128, 128, 0.8);
   font-weight: 700;
   caret-color: rgba(128, 128, 128, 0.8);
 }
 
-.btn-add{
+.btn-add {
   /* padding-block: 0.5rem;
   padding-inline: 1rem; */
   padding: 5px;
@@ -79,39 +80,44 @@ body {
   font-size: 40px;
   cursor: pointer;
   outline: none;
-  transition: .3s;
+  transition: 0.3s;
   box-shadow: 0 0 4px 0 rgba(84, 115, 64, 0.8);
 }
-.btn-add:hover{
+.btn-add:hover {
   box-shadow: 0 0 7px 3px #444;
 }
 
-.completed-tasks-container,.incomplete-tasks-container{
+.completed-tasks-container,
+.incomplete-tasks-container {
+  scroll-behavior: smooth;
+  max-height: 300px;
+  overflow-y: scroll;
   padding: 1rem;
   box-shadow: 0 3px 5px #333;
   font-size: 40px;
 }
 
-.incomplete-tasks-container{
+.incomplete-tasks-container {
   border-bottom: 1px solid rgb(0, 0, 0);
-  
-  box-shadow: 0 3px 5px #333;
 
+  box-shadow: 0 3px 5px #333;
 }
 
-.title{
+.title {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color:  rgb(84, 115, 64);
+  color: rgb(84, 115, 64);
   text-align: center;
 }
-#incomplete-tasks,#completed-tasks{
+#incomplete-tasks,
+#completed-tasks {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.incomplete-task,.completed-task{
+.incomplete-task,
+.completed-task {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -121,11 +127,12 @@ body {
   text-decoration: line-through;
   color: rgba(128, 128, 128, 0.8);
 }
-.btn-edit{
+.btn-edit {
   margin-left: auto;
 }
 
-.btn-edit,.btn-delete{
+.btn-edit,
+.btn-delete {
   background-color: white;
   width: 35px;
   height: 35px;
@@ -133,46 +140,44 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  transition: .3s;
+  transition: 0.3s;
   transform: scale(1);
   cursor: pointer;
 }
-.btn-delete:hover{
-  transition: .3s;
-  transform: scale(1.1); 
+.btn-delete:hover {
+  transition: 0.3s;
+  transform: scale(1.1);
 }
-.btn-edit:hover{  
-  transition: .3s;
-  transform: scale(1.1); 
+.btn-edit:hover {
+  transition: 0.3s;
+  transform: scale(1.1);
 }
 /* Edit Task */
-ul li input[type=text] {
+ul li input[type="text"] {
   display: none;
 }
 
-ul li.editMode input[type=text] {
+ul li.editMode input[type="text"] {
   display: block;
   box-shadow: 0 3px 4px #444;
 }
 
 ul li.editMode label {
   display: none;
-} 
-
+}
 
 @media only screen and (max-width: 600px) {
   body {
     background-color: lightblue;
   }
-  #new-task{
+  #new-task {
     font-size: 20px;
   }
-  .btn-add{
-    
-     font-size: 20px; 
-    }
+  .btn-add {
+    font-size: 20px;
+  }
 }
 
-.label-container{
+.label-container {
   word-break: break-all;
 }
