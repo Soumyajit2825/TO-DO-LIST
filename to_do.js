@@ -13,37 +13,64 @@ var addButton = document.getElementsByTagName("button")[0];//first button
 var incompleteTaskHolder = document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
 var completedTasksHolder = document.getElementById("completed-tasks");//completed-tasks
 
+// initial tasks data
+let tasks = [
+	{value: 'Pay bills', isComplete: false},
+	{value: 'See the Doctor', isComplete: true},
+]
+
+// get data from localStorage
+if(localStorage.getItem('taskData')){
+	tasks = JSON.parse(localStorage.getItem('taskData'))
+}
 
 //New task list item
-var createNewTaskElement = function (taskString) {
+var createNewTaskElement = function (taskString, isComplete, taskIndex) {
 
 	var listItem = document.createElement("li");
 
 	//input (checkbox)
 	var checkBox = document.createElement("input");//checkbx
+	checkBox.type = "checkbox";
+	checkBox.onchange = () => {
+		//toggle isComplete task data and re-render
+		tasks[taskIndex].isComplete = !tasks[taskIndex].isComplete
+		render();
+	}
+
 	//label
 	var label = document.createElement("label");//label
+	label.className = "label-container"
+
 	//input (text)
 	var editInput = document.createElement("input");//text
+	editInput.type = "text";
+	label.innerText = taskString;
+
 	//button.edit
 	var editButton = document.createElement("button");//edit button
+	editButton.innerHTML = `<img src="https://img.icons8.com/material/24/547340/edit--v1.png"/>`;//innerText encodes special characters, HTML does not.
+	editButton.className = "btn-edit";
+	editButton.onclick = (e) => {
+		editTask(e, taskIndex)
+	};
 
 	//button.delete
 	var deleteButton = document.createElement("button");//delete button
-
-	label.innerText = taskString;
-	listItem.className = "incomplete-task"
-	label.className = "label-container"
-	//Each elements, needs appending
-	checkBox.type = "checkbox";
-	editInput.type = "text";
-
-	editButton.innerHTML = `<img src="https://img.icons8.com/material/24/547340/edit--v1.png"/>`;//innerText encodes special characters, HTML does not.
-	editButton.className = "btn-edit";
 	deleteButton.innerHTML = `<img src="https://img.icons8.com/external-inkubators-glyph-inkubators/24/cb4154/external-delete-ecommerce-user-interface-inkubators-glyph-inkubators-2.png"/>`;
 	deleteButton.className = "btn-delete";
+	deleteButton.onclick = () => {
+		//delete from tasks and re-render
+		tasks.splice(taskIndex, 1)
+		render();
+	};
 
-
+	if(isComplete){
+		listItem.className = "completed-task";
+		checkBox.checked = true;
+	} else {
+		listItem.className = "incomplete-task";
+	}
 
 	//and appending.
 	listItem.appendChild(checkBox);
@@ -60,43 +87,34 @@ var addTask = function () {
 	console.log("Add Task...");
 	const task = taskInput.value.trim();
 
-	//Create a new list item with the text from the #new-task:
 	if(task === ''){
 		alert("Please enter a todo")
 		return
 	}
-	var listItem = createNewTaskElement(taskInput.value);
-
-
-	//Append listItem to incompleteTaskHolder
-	incompleteTaskHolder.appendChild(listItem);
-	bindTaskEvents(listItem, taskCompleted);
-
+	//push the task and re-render
+	tasks.push({value: task, isComplete: false})
 	taskInput.value = "";
-
+	render()
 }
 
 //Edit an existing task.
-var editTask = function () {
+var editTask = function (e, taskIndex) {
 	console.log("Edit Task...");
 	console.log("Change 'edit' to 'save'");
 
-
-
-	var listItem = this.parentNode;
-
+	const listItem = e.target.parentNode.parentNode;
 	var editInput = listItem.querySelector('input[type=text]');
 	var label = listItem.querySelector("label");
 	var containsClass = listItem.classList.contains("editMode");
 	const editButtonIcon = listItem.getElementsByClassName("btn-edit");
 	//If class of the parent is .editmode
 	if (containsClass) {
-
+		//save the edited value and re-render
+		tasks[taskIndex].value = editInput.value;
+		render();
+	} else {
 		//switch to .editmode
 		//label becomes the inputs value.
-		label.innerText = editInput.value;
-		editButtonIcon[0].innerHTML = `<img src="https://img.icons8.com/material/24/547340/edit--v1.png"/>`;
-	} else {
 		editInput.value = label.innerText;
 		editButtonIcon[0].innerHTML = `<img src="https://img.icons8.com/material/24/000000/checkmark--v1.png"/>`;
 	}
@@ -104,46 +122,6 @@ var editTask = function () {
 	//toggle .editmode on the parent.
 	listItem.classList.toggle("editMode");
 }
-
-
-
-
-//Delete task.
-var deleteTask = function () {
-	console.log("Delete Task...");
-
-	var listItem = this.parentNode;
-	var ul = listItem.parentNode;
-	//Remove the parent list item from the ul.
-	ul.removeChild(listItem);
-
-}
-
-
-//Mark task completed
-var taskCompleted = function () {
-	console.log("Complete Task...");
-
-	//Append the task list item to the #completed-tasks
-	var listItem = this.parentNode;
-
-	completedTasksHolder.appendChild(listItem);
-	listItem.className = "completed-task"
-	bindTaskEvents(listItem, taskIncomplete);
-
-}
-
-var taskIncomplete = function () {
-	console.log("Incomplete Task...");
-	//Mark task as incomplete.
-	//When the checkbox is unchecked
-	//Append the task list item to the #incomplete-tasks.
-	var listItem = this.parentNode;
-	incompleteTaskHolder.appendChild(listItem);
-	listItem.className = "incomplete-task"
-	bindTaskEvents(listItem, taskCompleted);
-}
-
 
 
 var ajaxRequest = function () {
@@ -163,41 +141,29 @@ taskInput.addEventListener("keypress", function (event) {
 });
 
 
-var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
-	console.log("bind list item events");
-	//select ListItems children
-	var checkBox = taskListItem.querySelector("input[type=checkbox]");
-	var editButton = taskListItem.querySelector(".btn-edit");
-	var deleteButton = taskListItem.querySelector(".btn-delete");
+var render = function () {
+	var incompleteTaskHolder = document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
+	var completedTasksHolder = document.getElementById("completed-tasks");//completed-tasks
 
+	// clear task every render
+	incompleteTaskHolder.innerHTML = '';
+	completedTasksHolder.innerHTML = '';
 
-	//Bind editTask to edit button.
-	editButton.onclick = editTask;
-	//Bind deleteTask to delete button.
-	deleteButton.onclick = deleteTask;
-	//Bind taskCompleted to checkBoxEventHandler.
-	checkBox.onchange = checkBoxEventHandler;
+	for (let i = 0; i < tasks.length; i++) {
+		const listItem = createNewTaskElement(tasks[i].value, tasks[i].isComplete, i)
+		if(tasks[i].isComplete) {
+			completedTasksHolder.appendChild(listItem);
+		} else {
+			incompleteTaskHolder.appendChild(listItem);
+		}
+	}
+
+	//save data to localStorage on every render
+	localStorage.setItem('taskData', JSON.stringify(tasks))
 }
 
-//cycle over incompleteTaskHolder ul list items
-//for each list item
-for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
-
-	//bind events to list items chldren(tasksCompleted)
-	bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
-}
-
-
-
-
-//cycle over completedTasksHolder ul list items
-for (var i = 0; i < completedTasksHolder.children.length; i++) {
-	//bind events to list items chldren(tasksIncompleted)
-	bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
-}
-
-
-
+// initial render function
+render();
 
 // Issues with usabiliy don't get seen until they are in front of a human tester.
 
