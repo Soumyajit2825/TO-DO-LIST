@@ -98,6 +98,8 @@ body {
 .incomplete-tasks-container {
   padding: 8px 16px;
   font-size: 1.2rem;
+  max-height: 310px;
+  overflow: scroll;
 }
 
 .title {
