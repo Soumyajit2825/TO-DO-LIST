@@ -29,6 +29,8 @@ function toggleTheme() {
 
     input_task.style.backgroundColor = "transparent"
 
+    add.style.backgroundColor = colors.white
+
     todo_container.style.backgroundColor = colors.offWhite
 
     body.style.backgroundColor = colors.white
