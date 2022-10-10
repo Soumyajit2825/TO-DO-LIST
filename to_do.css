@@ -6,16 +6,8 @@
   list-style: none;
 }
 
-i {
-  font-size: 60px;
-  cursor: pointer;
-  position: absolute;
-  top: 6%;
-  left: 50vw;
-  transform: translate(-50%, -50%);
-}
-
 html {
+  font-size: 16px;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
@@ -28,6 +20,7 @@ button {
 }
 
 input[type="text"] {
+  color: inherit;
   border: 0.25px solid rgba(128, 128, 128, 0.8);
   outline: none;
   background-color: transparent;
@@ -52,12 +45,12 @@ body {
 }
 
 #new-task {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .todo-container {
   width: 900px;
-  background-color: rgb(250, 249, 249);
+  background-color: #ededed;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   border: 1px solid #373737;
@@ -66,6 +59,7 @@ body {
 .add-todo {
   display: flex;
   justify-content: space-between;
+  background: #ffffff;
   align-items: center;
   gap: 8px;
   padding: 1rem;
@@ -78,6 +72,11 @@ body {
   caret-color: rgba(128, 128, 128, 0.8);
 }
 
+.bg-button{
+  background-color: white;
+  color: #0c0c0c;
+}
+
 .btn-add {
   padding: 8px 16px;
   border: none;
@@ -85,7 +84,7 @@ body {
   background-color: rgb(82, 129, 51);
   color: rgb(255, 255, 255);
   font-weight: 600;
-  font-size: 24px;
+  font-size: 1.5rem;
   cursor: pointer;
   outline: none;
   transition: 0.3s;
@@ -97,67 +96,59 @@ body {
 
 .completed-tasks-container,
 .incomplete-tasks-container {
-  max-height: 300px;
-  overflow-y: auto;
-  padding: 1rem;
-  font-size: 30px;
-}
-
-.incomplete-tasks-container {
-  border-bottom: 1px solid rgb(0, 0, 0);
+  padding: 8px 16px;
+  font-size: 1.2rem;
 }
 
 .title {
-  font-size: 3rem;
+  margin-top: 1rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: rgb(84, 115, 64);
   text-align: center;
 }
 
-#incomplete-tasks,
-#completed-tasks {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .incomplete-task,
 .completed-task {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  width: 100%;
+  gap: 8px;
+  margin: 16px 0;
 }
 
 .completed-task label {
   text-decoration: line-through;
-  color: rgba(128, 128, 128, 0.8);
+  color: #a7a7a7;
 }
 
-.btn-edit {
-  margin-left: auto;
+.label-container {
+  flex-grow: 1;
+  word-break: break-all;
+  margin: 0 16px 0 0;
+}
+
+.action-container{
+  display: flex;
+  gap: 8px;
 }
 
 .btn-edit,
 .btn-delete {
-  background-color: white;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  transition: 0.3s;
-  transform: scale(1);
+  border-radius: 10px;
+  border: 1px solid white;
+  transition: transform 0.1s ease-out;
   cursor: pointer;
 }
 .btn-delete:hover {
-  transition: 0.3s;
   transform: scale(1.1);
 }
 .btn-edit:hover {
-  transition: 0.3s;
   transform: scale(1.1);
 }
 
@@ -168,13 +159,14 @@ ul li input[type="text"] {
 
 ul li.editMode input[type="text"] {
   display: block;
-  box-shadow: 0 3px 4px #444;
+  margin: 0 16px 0 0;
+  box-shadow: none;
 }
 
 ul li.editMode label {
   display: none;
+  border: 0px solid;
 }
-
 
 /* Dark/Light mode toggler css starts here */
 
@@ -230,20 +222,14 @@ ul li.editMode label {
 
 /* Dark/Light mode toggler css ends here */
 
-
 @media only screen and (max-width: 900px) {
+  html{
+    font-size: 12px;
+  }
   .todo-container{
     width: 100%;
   }
-  #new-task {
-    font-size: 20px;
+  .wrapper{
+    margin: 16px;
   }
-  .btn-add {
-    font-size: 20px;
-  }
-}
-
-.label-container {
-  word-break: break-all;
-  width: 85%;
 }

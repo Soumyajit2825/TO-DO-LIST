@@ -1,77 +1,107 @@
-
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="to_do.css"
+      type="text/css"
+      media="screen"
+      charset="utf-8"
+    />
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <title>Todo App</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="to_do.css" type="text/css" media="screen" charset="utf-8">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-  <title>Todo App</title>
-</head>
-
-<body>
-  <main class="wrapper">
-    <div class="dark-mode-slider">
-      <input type="checkbox" class="checkbox" id="checkbox">
-      <label for="checkbox" class="label bi-brightness-high-fill" id="toggleDark">
-        <div class='ball'></div>
-      </label>
-    </div>
-    <div class="todo-container" id="todo-container">
-      <div class="add-todo" id="add">
-        <input id="new-task" type="text" placeholder="Create Todo..." i>
-        <button class="btn-add">Add</button>
+  <body>
+    <main class="wrapper">
+      <div class="dark-mode-slider">
+        <input type="checkbox" class="checkbox" id="checkbox" />
+        <label
+          for="checkbox"
+          class="label bi-brightness-high-fill"
+          id="toggleDark"
+        >
+          <div class="ball"></div>
+        </label>
       </div>
+      <div class="todo-container" id="todo-container">
+        <div class="add-todo" id="add">
+          <input id="new-task" type="text" placeholder="Create Todo..." />
+          <button class="btn-add">Add</button>
+        </div>
 
-      <div class="incomplete-tasks-container" id="incomplete">
-        <h3 class="title">Todo</h3>
-        <ul id="incomplete-tasks">
-          <li class="incomplete-task">
-            <input type="checkbox" />
-            <label class="label-container">Pay Bills</label>
-            <input type="text"/>
-            <button class="btn-edit">
-              <img src="https://img.icons8.com/material/24/547340/edit--v1.png" />
-              <button class="btn-delete">
-                <img
-                  src="https://img.icons8.com/external-inkubators-glyph-inkubators/24/cb4154/external-delete-ecommerce-user-interface-inkubators-glyph-inkubators-2.png" />
-              </button>
-          </li>
-        </ul>
+        <div class="incomplete-tasks-container" id="incomplete">
+          <h3 class="title">Todo</h3>
+          <ul id="incomplete-tasks">
+            <li class="incomplete-task">
+              <input type="checkbox" />
+              <label class="label-container">Pay Bills</label>
+              <input type="text" />
+              <div class="action-container">
+                <button class="btn-edit bg-button">
+                  <i class="ph-pencil"></i>
+                </button>
+                <button class="btn-delete bg-button">
+                  <i class="ph-trash"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="completed-tasks-container" id="complete">
+          <h3 class="title">Completed</h3>
+          <ul id="completed-tasks">
+            <li class="completed-task task">
+              <input type="checkbox" checked />
+              <label class="label-container">See the Doctor</label>
+              <input type="text" />
+              <div class="action-container">
+                <button class="btn-edit bg-button">
+                  <i class="ph-pencil"></i>
+                </button>
+                <button class="btn-delete bg-button">
+                  <i class="ph-trash"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
+    </main>
 
-      <div class="completed-tasks-container" id="complete">
-        <h3 class="title">Completed</h3>
-        <ul id="completed-tasks">
-          <li class="completed-task">
-            <input type="checkbox" checked />
-            <label>See the Doctor</label>
-            <input type="text" />
-            <button class="btn-edit">
-              <img src="https://img.icons8.com/material/24/547340/edit--v1.png" />
-            </button>
-            <button class="btn-delete">
-              <img
-                src="https://img.icons8.com/external-inkubators-glyph-inkubators/24/cb4154/external-delete-ecommerce-user-interface-inkubators-glyph-inkubators-2.png" />
-
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </main>
-
-  <script type="text/javascript" src="to_do.js"></script>
-  <script src="light-dark-mode.js"></script>
-</body>
-
+    <script type="module" src="light-dark-mode.js"></script>
+    <script type="module" src="to_do.js"></script>
+  </body>
 </html>
