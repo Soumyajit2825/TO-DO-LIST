@@ -1,100 +1,32 @@
-const toggle = document.getElementById("toggleDark")
-const body = document.querySelector("body")
+const toggleBtn = document.getElementById("toggleDark");
+const body = document.querySelector("body");
 
-const colors = {
-  green_dark: "#547340",
-  green_light: "#a2c98a",
-  white: "#ffffff",
-  offWhite: " #ededed",
-  black: "#0c0c0c",
-  darkGrey: "#212121",
-  grey: "#373737",
-}
-
-toggle.addEventListener("click", toggleTheme)
+toggleBtn.addEventListener("click", toggleTheme);
 
 function toggleTheme() {
-  const add = document.getElementById("add")
-  const input_task = document.getElementById("new-task")
-  const todo_container = document.getElementById("todo-container")
-  const title = document.querySelectorAll(".title")
-  const bgButton = document.querySelectorAll(".bg-button")
-
-  this.classList.toggle("bi-moon")
-  if (this.classList.toggle("bi-brightness-high-fill")) {
-    bgButton.forEach((t) => {
-      t.style.backgroundColor = colors.white
-      t.style.color = colors.black
-    })
-
-    input_task.style.backgroundColor = "transparent"
-
-    add.style.backgroundColor = colors.white
-
-    todo_container.style.backgroundColor = colors.offWhite
-
-    body.style.backgroundColor = colors.white
-    body.style.color = colors.black
-
-    title.forEach((t) => (t.style.color = colors.green_dark))
+  document.body.classList.toggle("dark_mode");
+  this.classList.toggle("bi-moon");
+  this.classList.toggle("bi-brightness-high-fill");
+  if (document.body.classList.contains("dark_mode")) {
+    localStorage.setItem("website_theme", "dark_mode");
   } else {
-    bgButton.forEach((t) => {
-      t.style.backgroundColor = colors.grey
-      t.style.color = colors.white
-    })
-
-    input_task.style.backgroundColor = colors.darkGrey
-
-    add.style.backgroundColor = colors.grey
-
-    todo_container.style.backgroundColor = colors.darkGrey
-
-    body.style.backgroundColor = colors.black
-    body.style.color = colors.white
-
-    title.forEach((t) => (t.style.color = colors.green_light))
+    localStorage.setItem("website_theme", "default");
   }
 }
 
-function refreshTheme() {
-  const add = document.getElementById("add")
-  const input_task = document.getElementById("new-task")
-  const todo_container = document.getElementById("todo-container")
-  const title = document.querySelectorAll(".title")
-  const bgButton = document.querySelectorAll(".bg-button")
+body.onload = function () {
+  const theme = localStorage.getItem("website_theme");
+  const checkbox = document.querySelector(".dark-mode-slider #checkbox");
 
-  if (toggle.classList.contains("bi-brightness-high-fill")) {
-    bgButton.forEach((t) => {
-      t.style.backgroundColor = colors.white
-      t.style.color = colors.black
-    })
-
-    input_task.style.backgroundColor = "transparent"
-
-    add.style.backgroundColor = colors.white
-
-    todo_container.style.backgroundColor = colors.offWhite
-
-    body.style.backgroundColor = colors.white
-    body.style.color = colors.black
-
-    title.forEach((t) => (t.style.color = colors.green_dark))
-  } else {
-    bgButton.forEach((t) => {
-      t.style.backgroundColor = colors.grey
-      t.style.color = colors.white
-    })
-
-    input_task.style.backgroundColor = colors.darkGrey
-
-    add.style.backgroundColor = colors.grey
-
-    todo_container.style.backgroundColor = colors.darkGrey
-
-    body.style.backgroundColor = colors.black
-    body.style.color = colors.white
-
-    title.forEach((t) => (t.style.color = colors.green_light))
+  if (theme != null) {
+    document.body.classList.remove("default", "dark_mode");
+    toggleBtn.classList.remove("bi-moon", "bi-brightness-high-fill");
+    document.body.classList.add(theme);
+    if (theme == "dark_mode") {
+      checkbox.checked = true;
+      toggleBtn.classList.add("bi-moon");
+    } else {
+      toggleBtn.classList.add("bi-brightness-high-fill");
+    }
   }
-}
-export { refreshTheme }
+};
