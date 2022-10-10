@@ -100,7 +100,7 @@ body {
   max-height: 300px;
   overflow-y: auto;
   padding: 1rem;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .incomplete-tasks-container {
@@ -108,7 +108,7 @@ body {
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: rgb(84, 115, 64);
@@ -246,4 +246,5 @@ ul li.editMode label {
 .label-container {
   word-break: break-all;
   width: 85%;
+  font-size: 25px;
 }

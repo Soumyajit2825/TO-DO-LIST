@@ -13,6 +13,7 @@ toggle.addEventListener('click', function(){
     this.classList.toggle('bi-moon');
     if(this.classList.toggle('bi-brightness-high-fill')){
         input_task.style.background='transparent'
+        input_task.style.color='black';
 
         add.style.background= '#ffffff';
 
@@ -26,6 +27,7 @@ toggle.addEventListener('click', function(){
         input_task.style.background='#212121';
 
         add.style.background= '#373737';
+        input_task.style.color='white';
 
         todo_container.style.backgroundColor='#212121';
 
