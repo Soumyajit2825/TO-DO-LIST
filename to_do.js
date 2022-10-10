@@ -10,8 +10,6 @@ import { refreshTheme } from "./light-dark-mode.js"
 
 var taskInput = document.getElementById("new-task");//Add a new task.
 var addButton = document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder = document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
-var completedTasksHolder = document.getElementById("completed-tasks");//completed-tasks
 
 // initial tasks data
 let tasks = [
@@ -53,8 +51,8 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
 	var editButton = document.createElement("button");//edit button
   editButton.innerHTML = `<i class="ph-pencil"></i>` //innerText encodes special characters, HTML does not.
   editButton.className = "btn-edit bg-button"
-	editButton.onclick = (e) => {
-		editTask(e, taskIndex)
+	editButton.onclick = function() {
+		editTask(this, taskIndex)
 	};
 
 	//button.delete
@@ -100,13 +98,16 @@ var addTask = function () {
 }
 
 //Edit an existing task.
-var editTask = function (e, taskIndex) {
+var editTask = function (that, taskIndex) {
 	console.log("Edit Task...");
 	console.log("Change 'edit' to 'save'");
 
-	const listItem = e.target.parentNode.parentNode;
+	const listItem = that.parentNode.parentNode;
+  console.log('ini itu listItem', listItem);
 	var editInput = listItem.querySelector('input[type=text]');
 	var label = listItem.querySelector("label");
+  console.log('ini itu editInput', editInput);
+  console.log('ini itu label', label);
 	var containsClass = listItem.classList.contains("editMode");
 	const editButtonIcon = listItem.getElementsByClassName("btn-edit");
 	//If class of the parent is .editmode
@@ -117,6 +118,7 @@ var editTask = function (e, taskIndex) {
 	} else {
 		//switch to .editmode
 		//label becomes the inputs value.
+    console.log('ini jalan')
 		editInput.value = label.innerText;
 		editButtonIcon[0].innerHTML = `<i class="ph-check-bold"></i>`;
 	}
@@ -159,6 +161,7 @@ var render = function () {
 	}
 
 	//save data to localStorage on every render
+  console.log('ini itu ', tasks);
 	localStorage.setItem('taskData', JSON.stringify(tasks))
   //refresh theme
   refreshTheme()
