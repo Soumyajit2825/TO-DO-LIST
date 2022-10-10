@@ -111,8 +111,13 @@ var editTask = function (that, taskIndex) {
   const editButtonIcon = listItem.getElementsByClassName("btn-edit");
   //If class of the parent is .editmode
   if (containsClass) {
-    //save the edited value and re-render
-    tasks[taskIndex].value = editInput.value;
+     //save the edited value and re-render
+    // Ensure the updated value is not blank
+	if(editInput.value !== ''){
+	  tasks[taskIndex].value = editInput.value;
+	}else{
+	  alert("Todo item new value cannot be blank.")  
+	}   
     render();
   } else {
     //switch to .editmode
