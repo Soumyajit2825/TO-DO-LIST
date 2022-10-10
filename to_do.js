@@ -8,136 +8,125 @@
 //Event handling, under interaction is what starts the code execution.
 import { refreshTheme } from "./light-dark-mode.js"
 
-var taskInput = document.getElementById("new-task") //Add a new task.
-var addButton = document.getElementsByTagName("button")[0] //first button
-var incompleteTaskHolder = document.getElementById("incomplete-tasks") //ul of #incomplete-tasks
-var completedTasksHolder = document.getElementById("completed-tasks") //completed-tasks
+var taskInput = document.getElementById("new-task");//Add a new task.
+var addButton = document.getElementsByTagName("button")[0];//first button
+
+// initial tasks data
+let tasks = [
+	{value: 'Pay bills', isComplete: false},
+	{value: 'See the Doctor', isComplete: true},
+]
+
+// get data from localStorage
+if(localStorage.getItem('taskData')){
+	tasks = JSON.parse(localStorage.getItem('taskData'))
+}
 
 //New task list item
-var createNewTaskElement = function (taskString) {
+var createNewTaskElement = function (taskString, isComplete, taskIndex) {
   var listItem = document.createElement("li")
+  var actionContainer = document.createElement("div")
 
-  //input (checkbox)
-  var checkBox = document.createElement("input") //checkbx
-  //label
-  var label = document.createElement("label") //label
-  //input (text)
-  var editInput = document.createElement("input") //text
-  //button.edit
-  var editButton = document.createElement("button") //edit button
-  //button.delete
-  var deleteButton = document.createElement("button") //delete button
-
-  var actionContainer = document.createElement("div") //delete button
-
-  label.innerText = taskString
-  listItem.className = "incomplete-task"
-  label.className = "label-container"
-  label.htmlFor = "chb"
-  //Each elements, needs appending
-  checkBox.type = "checkbox"
+	//input (checkbox)
+	var checkBox = document.createElement("input");//checkbx
+	checkBox.type = "checkbox";
   checkBox.className = "chb"
-  editInput.type = "text"
-  editInput.className = "edit-input"
+	checkBox.onchange = () => {
+		//toggle isComplete task data and re-render
+		tasks[taskIndex].isComplete = !tasks[taskIndex].isComplete
+		render();
+	}
 
+	//label
+	var label = document.createElement("label");//label
+	label.innerText = taskString;
+	label.className = "label-container"
+  label.htmlFor = "chb"
+
+	//input (text)
+	var editInput = document.createElement("input");//text
+	editInput.type = "text";
+
+	//button.edit
+	var editButton = document.createElement("button");//edit button
   editButton.innerHTML = `<i class="ph-pencil"></i>` //innerText encodes special characters, HTML does not.
   editButton.className = "btn-edit bg-button"
+	editButton.onclick = function() {
+		editTask(this, taskIndex)
+	};
+
+	//button.delete
+	var deleteButton = document.createElement("button");//delete button
   deleteButton.innerHTML = `<i class="ph-trash"></i>`
   deleteButton.className = "btn-delete bg-button"
+	deleteButton.onclick = () => {
+		//delete from tasks and re-render
+		tasks.splice(taskIndex, 1)
+		render();
+	};
+
+	if(isComplete){
+		listItem.className = "completed-task";
+		checkBox.checked = true;
+	} else {
+		listItem.className = "incomplete-task";
+	}
 
   actionContainer.className = "action-container"
   actionContainer.appendChild(editButton)
   actionContainer.appendChild(deleteButton)
 
-  //and appending.
-  listItem.appendChild(checkBox)
-  listItem.appendChild(label)
-  listItem.appendChild(editInput)
-  listItem.appendChild(actionContainer)
-
-  return listItem
+	listItem.appendChild(checkBox);
+	listItem.appendChild(label);
+	listItem.appendChild(editInput);
+  listItem.appendChild(actionContainer);
+	return listItem;
 }
 
 var addTask = function () {
   console.log("Add Task...")
   const task = taskInput.value.trim()
 
-  //Create a new list item with the text from the #new-task:
-  if (task === "") {
-    alert("Please enter a todo")
-    return
-  }
-  var listItem = createNewTaskElement(taskInput.value)
-
-  //Append listItem to incompleteTaskHolder
-  incompleteTaskHolder.appendChild(listItem)
-  bindTaskEvents(listItem, taskCompleted)
-
-  refreshTheme()
-
-  taskInput.value = ""
+	if(task === ''){
+		alert("Please enter a todo")
+		return
+	}
+	//push the task and re-render
+	tasks.push({value: task, isComplete: false})
+	taskInput.value = "";
+	render()
 }
 
 //Edit an existing task.
-var editTask = function () {
-  console.log("Edit Task...")
-  console.log("Change 'edit' to 'save'")
+var editTask = function (that, taskIndex) {
+	console.log("Edit Task...");
+	console.log("Change 'edit' to 'save'");
 
-  var actionConatiner = this.parentNode
-  var listItem = actionConatiner.parentNode
+	const listItem = that.parentNode.parentNode;
+  console.log('ini itu listItem', listItem);
+	var editInput = listItem.querySelector('input[type=text]');
+	var label = listItem.querySelector("label");
+  console.log('ini itu editInput', editInput);
+  console.log('ini itu label', label);
+	var containsClass = listItem.classList.contains("editMode");
+	const editButtonIcon = listItem.getElementsByClassName("btn-edit");
+	//If class of the parent is .editmode
+	if (containsClass) {
+		//save the edited value and re-render
+		tasks[taskIndex].value = editInput.value;
+		render();
+	} else {
+		//switch to .editmode
+		//label becomes the inputs value.
+    console.log('ini jalan')
+		editInput.value = label.innerText;
+		editButtonIcon[0].innerHTML = `<i class="ph-check-bold"></i>`;
+	}
 
-  var editInput = listItem.querySelector("input[type=text]")
-  var label = listItem.querySelector("label")
-  var containsClass = listItem.classList.contains("editMode")
-  const editButtonIcon = actionConatiner.getElementsByClassName("btn-edit")
-  //If class of the parent is .editmode
-  if (containsClass) {
-    //switch to .editmode
-    //label becomes the inputs value.
-    label.innerText = editInput.value
-    editButtonIcon[0].innerHTML = `<i class="ph-pencil"></i>`
-  } else {
-    editInput.value = label.innerText
-    editButtonIcon[0].innerHTML = `<i class="ph-check-bold"></i>`
-  }
-
-  //toggle .editmode on the parent.
-  listItem.classList.toggle("editMode")
+	//toggle .editmode on the parent.
+	listItem.classList.toggle("editMode");
 }
 
-//Delete task.
-var deleteTask = function () {
-  console.log("Delete Task...")
-
-  var actionConatiner = this.parentNode
-  var listItem = actionConatiner.parentNode
-  var ul = listItem.parentNode
-  //Remove the parent list item from the ul.
-  ul.removeChild(listItem)
-}
-
-//Mark task completed
-var taskCompleted = function () {
-  console.log("Complete Task...")
-
-  //Append the task list item to the #completed-tasks
-  var listItem = this.parentNode
-
-  completedTasksHolder.appendChild(listItem)
-  listItem.className = "completed-task"
-  bindTaskEvents(listItem, taskIncomplete)
-}
-
-var taskIncomplete = function () {
-  console.log("Incomplete Task...")
-  //Mark task as incomplete.
-  //When the checkbox is unchecked
-  //Append the task list item to the #incomplete-tasks.
-  var listItem = this.parentNode
-  incompleteTaskHolder.appendChild(listItem)
-  listItem.className = "incomplete-task"
-  bindTaskEvents(listItem, taskCompleted)
-}
 
 var ajaxRequest = function () {
   console.log("AJAX Request")
@@ -154,34 +143,32 @@ taskInput.addEventListener("keypress", function (event) {
   if (event.key === "Enter") addTask()
 })
 
-var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
-  console.log("bind list item events")
-  //select ListItems children
-  console.log(taskListItem)
-  var checkBox = taskListItem.querySelector("input[type=checkbox]")
-  var editButton = taskListItem.querySelector(".btn-edit")
-  var deleteButton = taskListItem.querySelector(".btn-delete")
+var render = function () {
+	var incompleteTaskHolder = document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
+	var completedTasksHolder = document.getElementById("completed-tasks");//completed-tasks
 
-  //Bind editTask to edit button.
-  editButton.onclick = editTask
-  //Bind deleteTask to delete button.
-  deleteButton.onclick = deleteTask
-  //Bind taskCompleted to checkBoxEventHandler.
-  checkBox.onchange = checkBoxEventHandler
+	// clear task every render
+	incompleteTaskHolder.innerHTML = '';
+	completedTasksHolder.innerHTML = '';
+
+	for (let i = 0; i < tasks.length; i++) {
+		const listItem = createNewTaskElement(tasks[i].value, tasks[i].isComplete, i)
+		if(tasks[i].isComplete) {
+			completedTasksHolder.appendChild(listItem);
+		} else {
+			incompleteTaskHolder.appendChild(listItem);
+		}
+	}
+
+	//save data to localStorage on every render
+  console.log('ini itu ', tasks);
+	localStorage.setItem('taskData', JSON.stringify(tasks))
+  //refresh theme
+  refreshTheme()
 }
 
-//cycle over incompleteTaskHolder ul list items
-//for each list item
-for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
-  //bind events to list items chldren(tasksCompleted)
-  bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted)
-}
-
-//cycle over completedTasksHolder ul list items
-for (var i = 0; i < completedTasksHolder.children.length; i++) {
-  //bind events to list items chldren(tasksIncompleted)
-  bindTaskEvents(completedTasksHolder.children[i], taskIncomplete)
-}
+// initial render function
+render();
 
 // Issues with usabiliy don't get seen until they are in front of a human tester.
 
