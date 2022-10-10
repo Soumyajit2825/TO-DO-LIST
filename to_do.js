@@ -6,7 +6,6 @@
 //Break things down into smaller steps and take each step at a time.
 
 //Event handling, under interaction is what starts the code execution.
-import { refreshTheme } from "./light-dark-mode.js"
 
 var taskInput = document.getElementById("new-task");//Add a new task.
 var addButton = document.getElementsByTagName("button")[0];//first button
@@ -103,11 +102,11 @@ var editTask = function (that, taskIndex) {
 	console.log("Change 'edit' to 'save'");
 
 	const listItem = that.parentNode.parentNode;
-  console.log('ini itu listItem', listItem);
+//   console.log('ini itu listItem', listItem);
 	var editInput = listItem.querySelector('input[type=text]');
 	var label = listItem.querySelector("label");
-  console.log('ini itu editInput', editInput);
-  console.log('ini itu label', label);
+//   console.log('ini itu editInput', editInput);
+//   console.log('ini itu label', label);
 	var containsClass = listItem.classList.contains("editMode");
 	const editButtonIcon = listItem.getElementsByClassName("btn-edit");
 	//If class of the parent is .editmode
@@ -161,10 +160,10 @@ var render = function () {
 	}
 
 	//save data to localStorage on every render
-  console.log('ini itu ', tasks);
+//   console.log('ini itu ', tasks);
 	localStorage.setItem('taskData', JSON.stringify(tasks))
   //refresh theme
-  refreshTheme()
+  
 }
 
 // initial render function
