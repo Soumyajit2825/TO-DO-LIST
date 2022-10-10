@@ -58,10 +58,10 @@ var createNewTaskElement = function (taskString) {
 
 var addTask = function () {
 	console.log("Add Task...");
-	taskInput.value.trim();
+	const task = taskInput.value.trim();
 
 	//Create a new list item with the text from the #new-task:
-	if(taskInput.value === ''){
+	if(task === ''){
 		alert("Please enter a todo")
 		return
 	}
@@ -156,6 +156,11 @@ var ajaxRequest = function () {
 //Set the click handler to the addTask function.
 addButton.addEventListener("click", addTask);
 addButton.addEventListener("click", ajaxRequest);
+
+//Set the enter keypress handler to the addTask function.
+taskInput.addEventListener("keypress", function (event) {
+	if (event.key === 'Enter') addTask();
+});
 
 
 var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
