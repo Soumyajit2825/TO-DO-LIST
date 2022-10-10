@@ -5,8 +5,8 @@
 //Solution: Add interactivity so the user can manage daily tasks.
 //Break things down into smaller steps and take each step at a time.
 
-
 //Event handling, under interaction is what starts the code execution.
+import { refreshTheme } from "./light-dark-mode.js"
 
 var taskInput = document.getElementById("new-task");//Add a new task.
 var addButton = document.getElementsByTagName("button")[0];//first button
@@ -26,12 +26,13 @@ if(localStorage.getItem('taskData')){
 
 //New task list item
 var createNewTaskElement = function (taskString, isComplete, taskIndex) {
-
-	var listItem = document.createElement("li");
+  var listItem = document.createElement("li")
+  var actionContainer = document.createElement("div")
 
 	//input (checkbox)
 	var checkBox = document.createElement("input");//checkbx
 	checkBox.type = "checkbox";
+  checkBox.className = "chb"
 	checkBox.onchange = () => {
 		//toggle isComplete task data and re-render
 		tasks[taskIndex].isComplete = !tasks[taskIndex].isComplete
@@ -40,25 +41,26 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
 
 	//label
 	var label = document.createElement("label");//label
+	label.innerText = taskString;
 	label.className = "label-container"
+  label.htmlFor = "chb"
 
 	//input (text)
 	var editInput = document.createElement("input");//text
 	editInput.type = "text";
-	label.innerText = taskString;
 
 	//button.edit
 	var editButton = document.createElement("button");//edit button
-	editButton.innerHTML = `<img src="https://img.icons8.com/material/24/547340/edit--v1.png"/>`;//innerText encodes special characters, HTML does not.
-	editButton.className = "btn-edit";
+  editButton.innerHTML = `<i class="ph-pencil"></i>` //innerText encodes special characters, HTML does not.
+  editButton.className = "btn-edit bg-button"
 	editButton.onclick = (e) => {
 		editTask(e, taskIndex)
 	};
 
 	//button.delete
 	var deleteButton = document.createElement("button");//delete button
-	deleteButton.innerHTML = `<img src="https://img.icons8.com/external-inkubators-glyph-inkubators/24/cb4154/external-delete-ecommerce-user-interface-inkubators-glyph-inkubators-2.png"/>`;
-	deleteButton.className = "btn-delete";
+  deleteButton.innerHTML = `<i class="ph-trash"></i>`
+  deleteButton.className = "btn-delete bg-button"
 	deleteButton.onclick = () => {
 		//delete from tasks and re-render
 		tasks.splice(taskIndex, 1)
@@ -72,20 +74,20 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
 		listItem.className = "incomplete-task";
 	}
 
-	//and appending.
+  actionContainer.className = "action-container"
+  actionContainer.appendChild(editButton)
+  actionContainer.appendChild(deleteButton)
+
 	listItem.appendChild(checkBox);
 	listItem.appendChild(label);
 	listItem.appendChild(editInput);
-	listItem.appendChild(editButton);
-	listItem.appendChild(deleteButton);
+  listItem.appendChild(actionContainer);
 	return listItem;
 }
 
-
-
 var addTask = function () {
-	console.log("Add Task...");
-	const task = taskInput.value.trim();
+  console.log("Add Task...")
+  const task = taskInput.value.trim()
 
 	if(task === ''){
 		alert("Please enter a todo")
@@ -116,7 +118,7 @@ var editTask = function (e, taskIndex) {
 		//switch to .editmode
 		//label becomes the inputs value.
 		editInput.value = label.innerText;
-		editButtonIcon[0].innerHTML = `<img src="https://img.icons8.com/material/24/000000/checkmark--v1.png"/>`;
+		editButtonIcon[0].innerHTML = `<i class="ph-check-bold"></i>`;
 	}
 
 	//toggle .editmode on the parent.
@@ -125,21 +127,19 @@ var editTask = function (e, taskIndex) {
 
 
 var ajaxRequest = function () {
-	console.log("AJAX Request");
+  console.log("AJAX Request")
 }
 
 //The glue to hold it all together.
 
-
 //Set the click handler to the addTask function.
-addButton.addEventListener("click", addTask);
-addButton.addEventListener("click", ajaxRequest);
+addButton.addEventListener("click", addTask)
+addButton.addEventListener("click", ajaxRequest)
 
 //Set the enter keypress handler to the addTask function.
 taskInput.addEventListener("keypress", function (event) {
-	if (event.key === 'Enter') addTask();
-});
-
+  if (event.key === "Enter") addTask()
+})
 
 var render = function () {
 	var incompleteTaskHolder = document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
@@ -160,6 +160,8 @@ var render = function () {
 
 	//save data to localStorage on every render
 	localStorage.setItem('taskData', JSON.stringify(tasks))
+  //refresh theme
+  refreshTheme()
 }
 
 // initial render function

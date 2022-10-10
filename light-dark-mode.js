@@ -1,39 +1,100 @@
-const toggle = document.getElementById('toggleDark');
-const body = document.querySelector('body');
-const add= document.getElementById('add');
-const input_task= document.getElementById('new-task')
-const todo_container= document.getElementById('todo-container');
-const title = document.querySelectorAll('.title');
+const toggle = document.getElementById("toggleDark")
+const body = document.querySelector("body")
 
 const colors = {
-    green_dark: "#547340",
-    green_light: "#a2c98a"
+  green_dark: "#547340",
+  green_light: "#a2c98a",
+  white: "#ffffff",
+  offWhite: " #ededed",
+  black: "#0c0c0c",
+  darkGrey: "#212121",
+  grey: "#373737",
 }
-toggle.addEventListener('click', function(){
-    this.classList.toggle('bi-moon');
-    if(this.classList.toggle('bi-brightness-high-fill')){
-        input_task.style.background='transparent'
-        input_task.style.color='black';
 
-        add.style.background= '#ffffff';
+toggle.addEventListener("click", toggleTheme)
 
-        todo_container.style.backgroundColor='#ededed'
+function toggleTheme() {
+  const add = document.getElementById("add")
+  const input_task = document.getElementById("new-task")
+  const todo_container = document.getElementById("todo-container")
+  const title = document.querySelectorAll(".title")
+  const bgButton = document.querySelectorAll(".bg-button")
 
-        body.style.background = 'white';
-        body.style.color = '#000000';
+  this.classList.toggle("bi-moon")
+  if (this.classList.toggle("bi-brightness-high-fill")) {
+    bgButton.forEach((t) => {
+      t.style.backgroundColor = colors.white
+      t.style.color = colors.black
+    })
 
-        title.forEach(t => t.style.color = colors.green_dark);
-    }else{
-        input_task.style.background='#212121';
+    input_task.style.backgroundColor = "transparent"
 
-        add.style.background= '#373737';
-        input_task.style.color='white';
+    add.style.backgroundColor = colors.white
 
-        todo_container.style.backgroundColor='#212121';
+    todo_container.style.backgroundColor = colors.offWhite
 
-        body.style.background = '#0c0c0c';
-        body.style.color = '#ffffff';
+    body.style.backgroundColor = colors.white
+    body.style.color = colors.black
 
-        title.forEach(t => t.style.color = colors.green_light);
-    }
-});
+    title.forEach((t) => (t.style.color = colors.green_dark))
+  } else {
+    bgButton.forEach((t) => {
+      t.style.backgroundColor = colors.grey
+      t.style.color = colors.white
+    })
+
+    input_task.style.backgroundColor = colors.darkGrey
+
+    add.style.backgroundColor = colors.grey
+
+    todo_container.style.backgroundColor = colors.darkGrey
+
+    body.style.backgroundColor = colors.black
+    body.style.color = colors.white
+
+    title.forEach((t) => (t.style.color = colors.green_light))
+  }
+}
+
+function refreshTheme() {
+  const add = document.getElementById("add")
+  const input_task = document.getElementById("new-task")
+  const todo_container = document.getElementById("todo-container")
+  const title = document.querySelectorAll(".title")
+  const bgButton = document.querySelectorAll(".bg-button")
+
+  if (toggle.classList.contains("bi-brightness-high-fill")) {
+    bgButton.forEach((t) => {
+      t.style.backgroundColor = colors.white
+      t.style.color = colors.black
+    })
+
+    input_task.style.backgroundColor = "transparent"
+
+    add.style.backgroundColor = colors.white
+
+    todo_container.style.backgroundColor = colors.offWhite
+
+    body.style.backgroundColor = colors.white
+    body.style.color = colors.black
+
+    title.forEach((t) => (t.style.color = colors.green_dark))
+  } else {
+    bgButton.forEach((t) => {
+      t.style.backgroundColor = colors.grey
+      t.style.color = colors.white
+    })
+
+    input_task.style.backgroundColor = colors.darkGrey
+
+    add.style.backgroundColor = colors.grey
+
+    todo_container.style.backgroundColor = colors.darkGrey
+
+    body.style.backgroundColor = colors.black
+    body.style.color = colors.white
+
+    title.forEach((t) => (t.style.color = colors.green_light))
+  }
+}
+export { refreshTheme }
