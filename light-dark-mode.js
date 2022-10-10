@@ -18,7 +18,6 @@ body.onload = function () {
   const theme = localStorage.getItem("website_theme");
   const checkbox = document.querySelector(".dark-mode-slider #checkbox");
 
-
   if (theme != null) {
     document.body.classList.remove("default", "dark_mode");
     toggleBtn.classList.remove("bi-moon", "bi-brightness-high-fill");
