@@ -42,7 +42,7 @@ grey: "#373737", */
 }
 
 html {
-  font-size: 16px;
+  font-size: 20px;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
@@ -56,7 +56,7 @@ button {
 
 input[type="text"] {
   color: inherit;
-  border: 0.25px solid rgba(128, 128, 128, 0.8);
+  border: 0.30px solid rgba(128, 128, 128, 0.8);
   outline: none;
   background-color: transparent;
   width: 100%;
