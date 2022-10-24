@@ -111,13 +111,13 @@ var editTask = function (that, taskIndex) {
   const editButtonIcon = listItem.getElementsByClassName("btn-edit");
   //If class of the parent is .editmode
   if (containsClass) {
-     //save the edited value and re-render
+    //save the edited value and re-render
     // Ensure the updated value is not blank
-	if(editInput.value !== ''){
-	  tasks[taskIndex].value = editInput.value;
-	}else{
-	  alert("Todo item new value cannot be blank.")  
-	}   
+    if (editInput.value !== "") {
+      tasks[taskIndex].value = editInput.value;
+    } else {
+      alert("Todo item new value cannot be blank.");
+    }
     render();
   } else {
     //switch to .editmode
@@ -147,6 +147,9 @@ taskInput.addEventListener("keypress", function (event) {
 });
 
 var render = function () {
+  let completedCount = 0;
+  let pendingCount = 0;
+  var headingTags = document.getElementsByTagName("h3");
   var incompleteTaskHolder = document.getElementById("incomplete-tasks"); //ul of #incomplete-tasks
   var completedTasksHolder = document.getElementById("completed-tasks"); //completed-tasks
 
@@ -161,9 +164,19 @@ var render = function () {
       i
     );
     if (tasks[i].isComplete) {
+      completedCount++;
       completedTasksHolder.appendChild(listItem);
     } else {
       incompleteTaskHolder.appendChild(listItem);
+      pendingCount++;
+    }
+  }
+
+  for (let element = 0; element < headingTags.length; element++) {
+    if (headingTags[element].innerText.toLowerCase().includes("todo")) {
+      headingTags[element].innerText = `Todo ${pendingCount}`;
+    } else {
+      headingTags[element].innerText = `Completed ${completedCount}`;
     }
   }
 
