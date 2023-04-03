@@ -15,6 +15,8 @@ let tasks = [
   { value: "Pay bills", isComplete: false },
   { value: "See the Doctor", isComplete: true },
 ];
+ 
+var v=3;
 
 // get data from localStorage
 if (localStorage.getItem("taskData")) {
