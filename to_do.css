@@ -67,9 +67,9 @@ input[type="text"] {
 /* Basic Style */
 body {
   font-family: "Lato", sans-serif;
-  height: 100vh;
+  height: 55vh;
   transition: 0.15s ease-out;
-  background-color: var(--body-bg);
+  background-color:rgba(188, 248, 207, 0.762);
   color: var(--body-color);
 }
 
@@ -83,11 +83,12 @@ body {
 
 #new-task {
   font-size: 1.5rem;
-  background-color: var(--newtask-bg);
+  background-color: #c1f2d1c2;
 }
 
 .todo-container {
   width: 900px;
+  margin-top: -20px;
   background-color: var(--todo-bg);
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -97,7 +98,7 @@ body {
 .add-todo {
   display: flex;
   justify-content: space-between;
-  background: var(--add-bg);
+  background-image: linear-gradient(rgba(160, 231, 160, 0.668),rgba(175, 226, 175, 0.756));
   align-items: center;
   gap: 8px;
   padding: 1rem;
@@ -130,12 +131,14 @@ body {
 
 .btn-add:hover {
   transform: translate(0px, -2px);
+  background-color: #668752d9;
 }
 
 .completed-tasks-container,
 .incomplete-tasks-container {
   padding: 8px 16px;
   font-size: 1.2rem;
+  background-image: linear-gradient(rgba(160, 231, 160, 0.668),rgba(175, 226, 175, 0.756));
   max-height: 310px;
   overflow-y: auto;
 }
@@ -277,4 +280,11 @@ ul li.editMode label {
   .wrapper {
     margin: 16px;
   }
+}
+
+.incomplete-tasks-container label{
+  background-color: red;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 25px
 }

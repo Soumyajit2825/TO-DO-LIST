@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,17 +23,27 @@
       charset="utf-8"
     />
     <script src="https://unpkg.com/phosphor-icons"></script>
+
+    
+    <!-- ----AOS File----- -->
+    <link rel="stylesheet" href="aos/aos.css">
+    <script src="aos/aos.js"></script>
+
+
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/favicon/favicon.ico"
+      href="favicon/favicon.ico"
     />
     <title>Todo App</title>
   </head>
 
   <body>
-    <main class="wrapper">
+    <header>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#8cb672" fill-opacity="1" d="M0,192L24,202.7C48,213,96,235,144,218.7C192,203,240,149,288,144C336,139,384,181,432,202.7C480,224,528,224,576,186.7C624,149,672,75,720,69.3C768,64,816,128,864,170.7C912,213,960,235,1008,213.3C1056,192,1104,128,1152,128C1200,128,1248,192,1296,213.3C1344,235,1392,213,1416,202.7L1440,192L1440,0L1416,0C1392,0,1344,0,1296,0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z"></path></svg>
+    </header>
+    <main class="wrapper" >
       <div class="dark-mode-slider">
         <input type="checkbox" class="checkbox" id="checkbox" />
         <label
@@ -43,7 +54,7 @@
           <div class="ball"></div>
         </label>
       </div>
-      <div class="todo-container" id="todo-container">
+      <div class="todo-container" id="todo-container" data-aos="fade-up-right">
         <div class="add-todo" id="add">
           <input id="new-task" type="text" placeholder="Create Todo..." />
           <button class="btn-add">Add</button>
@@ -68,6 +79,8 @@
           </ul>
         </div>
 
+        <hr>
+
         <div class="completed-tasks-container" id="complete">
           <h3 class="title">Completed</h3>
           <ul id="completed-tasks">
@@ -88,6 +101,9 @@
         </div>
       </div>
     </main>
+    <footer>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#8cb672" fill-opacity="1" d="M0,192L24,202.7C48,213,96,235,144,218.7C192,203,240,149,288,144C336,139,384,181,432,202.7C480,224,528,224,576,186.7C624,149,672,75,720,69.3C768,64,816,128,864,170.7C912,213,960,235,1008,213.3C1056,192,1104,128,1152,128C1200,128,1248,192,1296,213.3C1344,235,1392,213,1416,202.7L1440,192L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"></path></svg>
+    </footer>
 
     <script type="module" src="light-dark-mode.js"></script>
     <script type="module" src="to_do.js"></script>

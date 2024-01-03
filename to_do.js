@@ -7,6 +7,9 @@
 
 //Event handling, under interaction is what starts the code execution.
 
+// ----CALLING AOS FILE----
+AOS.init();
+
 var taskInput = document.getElementById("new-task"); //Add a new task.
 var addButton = document.getElementsByTagName("button")[0]; //first button
 
