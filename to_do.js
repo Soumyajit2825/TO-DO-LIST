@@ -157,7 +157,7 @@ var render = function () {
   incompleteTaskHolder.innerHTML = "";
   completedTasksHolder.innerHTML = "";
 
-  for (let i = 0; i < tasks.length; i++) {
+  for (let i = tasks.length - 1; i >= 0; i--) {
     const listItem = createNewTaskElement(
       tasks[i].value,
       tasks[i].isComplete,

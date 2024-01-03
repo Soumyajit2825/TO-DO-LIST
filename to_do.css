@@ -141,8 +141,8 @@ body {
 }
 
 .title {
-  margin-top: 1rem;
-  font-size: 2.5rem;
+  /* margin-top: 1rem; */
+  font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--green);
@@ -159,7 +159,7 @@ body {
 
 .completed-task label {
   text-decoration: line-through;
-  color: #a7a7a7;
+  /* color: #a7a7a7; */
 }
 
 .label-container {
@@ -277,4 +277,41 @@ ul li.editMode label {
   .wrapper {
     margin: 16px;
   }
+}
+
+/* fixed the todo count dissapearing issue */
+.incompleted_container,
+.completed_container {
+  overflow-y: scroll;
+  max-height: 150px;
+}
+
+.incomplete-task,
+.completed-task {
+  display: flex;
+  flex-direction: row;
+  margin-right: 5px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+  
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.completed-task{
+  opacity: 40%;
 }
