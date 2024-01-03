@@ -46,24 +46,37 @@
       <div class="todo-container" id="todo-container">
         <div class="add-todo" id="add">
           <input id="new-task" type="text" placeholder="Create Todo..." />
+          <div class="deadline-container">
+            <label for="deadline-input">Deadline:</label>
+            <input id="deadline-input" type="date" />
+          </div>
           <button class="btn-add">Add</button>
+          
         </div>
 
         <div class="incomplete-tasks-container" id="incomplete">
           <h3 class="title">Todo</h3>
           <ul id="incomplete-tasks">
             <li class="incomplete-task">
-              <input type="checkbox" />
-              <label class="label-container">Pay Bills</label>
-              <input type="text" />
-              <div class="action-container">
-                <button class="btn-edit bg-button">
-                  <i class="ph-pencil"></i>
-                </button>
-                <button class="btn-delete bg-button">
-                  <i class="ph-trash"></i>
-                </button>
+              <div class="task-details">
+                <input type="checkbox" />
+                <label class="label-container">Pay Bills</label>
+                <span class="deadline"></span>
+                <input type="text" />
+                <div class="action-container">
+                  <button class="btn-edit bg-button">
+                    <i class="ph-pencil"></i>
+                  </button>
+                  <button class="btn-delete bg-button">
+                    <i class="ph-trash"></i>
+                  </button>
+                </div>
               </div>
+              
+              
+              
+              
+              
             </li>
           </ul>
         </div>

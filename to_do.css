@@ -96,12 +96,22 @@ body {
 
 .add-todo {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   background: var(--add-bg);
   align-items: center;
+  margin-bottom: 20px;
   gap: 8px;
   padding: 1rem;
   border-radius: 10px 10px 0 0px;
+}
+
+.deadline-container{
+  margin-top: 10px;
+}
+
+.deadline-container label{
+  margin-right: 10px;
 }
 
 .add-todo input::placeholder {
@@ -155,6 +165,19 @@ body {
   align-items: center;
   gap: 8px;
   margin: 16px 0;
+  justify-content: space-between;
+}
+
+.task-details{
+  display: flex;
+  align-items: center;
+}
+
+.deadline{
+
+  margin-left: 10px;
+  font-size: 14px;
+  color: #888;
 }
 
 .completed-task label {

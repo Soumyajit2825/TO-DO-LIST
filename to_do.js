@@ -12,8 +12,8 @@ var addButton = document.getElementsByTagName("button")[0]; //first button
 
 // initial tasks data
 let tasks = [
-  { value: "Pay bills", isComplete: false },
-  { value: "See the Doctor", isComplete: true },
+  { value: "Pay bills", isComplete: false, deadline: null },
+  { value: "See the Doctor", isComplete: true, deadline: "2024-01-03T12:00" },
 ];
 
 // get data from localStorage
@@ -22,9 +22,18 @@ if (localStorage.getItem("taskData")) {
 }
 
 //New task list item
-var createNewTaskElement = function (taskString, isComplete, taskIndex) {
+var createNewTaskElement = function (
+  taskString,
+  isComplete,
+  taskIndex,
+  deadline
+) {
   var listItem = document.createElement("li");
   var actionContainer = document.createElement("div");
+  var deadlineSpan = document.createElement("span");
+  deadlineSpan.className = "deadline";
+  deadlineSpan.innerText = deadline ? `Deadline: ${deadline}` : "";
+  listItem.insertBefore(deadlineSpan, editInput);
 
   //input (checkbox)
   var checkBox = document.createElement("input"); //checkbx
@@ -35,6 +44,17 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
     tasks[taskIndex].isComplete = !tasks[taskIndex].isComplete;
     render();
   };
+
+  // var deadlineInput = document.createElement("input");
+  // deadlineInput.type = "date";
+  // deadlineInput.type = deadline || "";
+  // deadlineInput.className = "deadline-input";
+  // deadlineInput.onchange = function () {
+  //   // update the task deadline and re-render
+  //   tasks[taskIndex].deadline = this.value;
+  //   render();
+  // };
+  // listItem.appendChild(deadlineInput);
 
   //label
   var label = document.createElement("label"); //label
@@ -85,14 +105,18 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
 var addTask = function () {
   console.log("Add Task...");
   const task = taskInput.value.trim();
+  const deadlineInput = document.getElementById("deadline-input");
+  const deadline = deadlineInput.value;
 
   if (task === "") {
     alert("Please enter a todo");
     return;
   }
-  //push the task and re-render
-  tasks.push({ value: task, isComplete: false });
+
+  //push the task with the deadline and re-render
+  tasks.push({ value: task, isComplete: false, deadline });
   taskInput.value = "";
+  deadlineInput.value = "";
   render();
 };
 
@@ -161,7 +185,8 @@ var render = function () {
     const listItem = createNewTaskElement(
       tasks[i].value,
       tasks[i].isComplete,
-      i
+      i,
+      tasks[i].deadline
     );
     if (tasks[i].isComplete) {
       completedCount++;
