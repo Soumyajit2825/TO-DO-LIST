@@ -166,6 +166,11 @@ body {
   flex-grow: 1;
   word-break: break-all;
   margin: 0 16px 0 0;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding-left: 3px;
+  background-color: #ff0000e8;
+  font-family: sans-serif;
 }
 
 .action-container {
