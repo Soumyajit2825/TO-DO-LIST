@@ -153,6 +153,9 @@ var render = function () {
   var incompleteTaskHolder = document.getElementById("incomplete-tasks"); //ul of #incomplete-tasks
   var completedTasksHolder = document.getElementById("completed-tasks"); //completed-tasks
 
+  var todoBadge = document.getElementById('todo-badge'); // Badge of incompleted-tasks
+  var completedBadge = document.getElementById('completed-badge') // Badge of completed-tasks
+
   // clear task every render
   incompleteTaskHolder.innerHTML = "";
   completedTasksHolder.innerHTML = "";
@@ -174,9 +177,11 @@ var render = function () {
 
   for (let element = 0; element < headingTags.length; element++) {
     if (headingTags[element].innerText.toLowerCase().includes("todo")) {
-      headingTags[element].innerText = `Todo ${pendingCount}`;
+      // headingTags[element].innerText = `Todo ${pendingCount}`;
+      todoBadge.innerText = pendingCount // Updating innertext for todo-badge
     } else {
-      headingTags[element].innerText = `Completed ${completedCount}`;
+      // headingTags[element].innerText = `Completed ${completedCount}`;
+      completedBadge.innerText = completedCount // Updating innertext for completedtasks-badge
     }
   }
 
