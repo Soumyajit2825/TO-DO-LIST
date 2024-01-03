@@ -6,28 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="to_do.css"
-      type="text/css"
-      media="screen"
-      charset="utf-8"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="to_do.css" type="text/css" media="screen" charset="utf-8"/>
     <script src="https://unpkg.com/phosphor-icons"></script>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon/favicon.ico"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon.ico"/>
     <title>Todo App</title>
   </head>
 
@@ -35,22 +18,17 @@
     <main class="wrapper">
       <div class="dark-mode-slider">
         <input type="checkbox" class="checkbox" id="checkbox" />
-        <label
-          for="checkbox"
-          class="label bi-brightness-high-fill"
-          id="toggleDark"
-        >
-          <div class="ball"></div>
-        </label>
+        <label for="checkbox" class="label bi-brightness-high-fill" id="toggleDark"><div class="ball"></div></label>
       </div>
       <div class="todo-container" id="todo-container">
         <div class="add-todo" id="add">
           <input id="new-task" type="text" placeholder="Create Todo..." />
+          <input type="date" id="deadlineInput" />
           <button class="btn-add">Add</button>
         </div>
 
         <div class="incomplete-tasks-container" id="incomplete">
-          <h3 class="title">Todo</h3>
+          <h3 class="title">TODO</h3>
           <ul id="incomplete-tasks">
             <li class="incomplete-task">
               <input type="checkbox" />
@@ -69,7 +47,7 @@
         </div>
 
         <div class="completed-tasks-container" id="complete">
-          <h3 class="title">Completed</h3>
+          <h3 class="title">COMPLETED</h3>
           <ul id="completed-tasks">
             <li class="completed-task task">
               <input type="checkbox" checked />
@@ -89,7 +67,7 @@
       </div>
     </main>
 
-    <script type="module" src="light-dark-mode.js"></script>
-    <script type="module" src="to_do.js"></script>
+    <script src="./to_do.js"></script>
+    <script src="./light-dark-mode.js"></script>
   </body>
 </html>
