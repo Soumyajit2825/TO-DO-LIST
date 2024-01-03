@@ -157,6 +157,13 @@ body {
   margin: 16px 0;
 }
 
+.incomplete-task .label-container {
+  background-color: red;
+  border-radius: 5px;
+  padding-left: 5px;
+  font-family: Inter;
+}
+
 .completed-task label {
   text-decoration: line-through;
   color: #a7a7a7;
