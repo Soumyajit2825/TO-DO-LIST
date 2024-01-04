@@ -1,14 +1,16 @@
-//Document is the DOM can be accessed in the console with document.window.
-// Tree is from the top, html, body, p etc.
+var taskInput = document.getElementById("new-task");
+var addButton = document.querySelector(".btn-add");
+var today = new Date();
+var deadlineInput = document.getElementById("deadlineInput");
+addButton.addEventListener("click", function () {
+  addTask();
+  ajaxRequest();
+});
 
-//Problem: User interaction does not provide the correct results.
-//Solution: Add interactivity so the user can manage daily tasks.
-//Break things down into smaller steps and take each step at a time.
-
-//Event handling, under interaction is what starts the code execution.
-
-var taskInput = document.getElementById("new-task"); //Add a new task.
-var addButton = document.getElementsByTagName("button")[0]; //first button
+// Set the enter keypress handler to the addTask function.
+taskInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") addTask();
+});
 
 // initial tasks data
 let tasks = [
@@ -21,45 +23,45 @@ if (localStorage.getItem("taskData")) {
   tasks = JSON.parse(localStorage.getItem("taskData"));
 }
 
-//New task list item
 var createNewTaskElement = function (taskString, isComplete, taskIndex) {
   var listItem = document.createElement("li");
   var actionContainer = document.createElement("div");
 
-  //input (checkbox)
-  var checkBox = document.createElement("input"); //checkbx
+  // input (checkbox)
+  var checkBox = document.createElement("input");
   checkBox.type = "checkbox";
   checkBox.className = "chb";
+  checkBox.checked = isComplete;
   checkBox.onchange = () => {
-    //toggle isComplete task data and re-render
+    // toggle isComplete task data and re-render
     tasks[taskIndex].isComplete = !tasks[taskIndex].isComplete;
     render();
   };
 
-  //label
-  var label = document.createElement("label"); //label
+  // label
+  var label = document.createElement("label");
   label.innerText = taskString;
   label.className = "label-container";
   label.htmlFor = "chb";
 
-  //input (text)
-  var editInput = document.createElement("input"); //text
+  // input (text)
+  var editInput = document.createElement("input");
   editInput.type = "text";
 
-  //button.edit
-  var editButton = document.createElement("button"); //edit button
-  editButton.innerHTML = `<i class="ph-pencil"></i>`; //innerText encodes special characters, HTML does not.
+  // button.edit
+  var editButton = document.createElement("button");
+  editButton.innerHTML = `<i class="ph-pencil"></i>`; // innerText encodes special characters, HTML does not.
   editButton.className = "btn-edit bg-button";
   editButton.onclick = function () {
-    editTask(this, taskIndex);
+    editTask(taskIndex);
   };
 
-  //button.delete
-  var deleteButton = document.createElement("button"); //delete button
+  // button.delete
+  var deleteButton = document.createElement("button");
   deleteButton.innerHTML = `<i class="ph-trash"></i>`;
   deleteButton.className = "btn-delete bg-button";
   deleteButton.onclick = () => {
-    //delete from tasks and re-render
+    // delete from tasks and re-render
     tasks.splice(taskIndex, 1);
     render();
   };
@@ -82,87 +84,57 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
   return listItem;
 };
 
+var editTask = function (taskIndex) {
+  var listItem = document.getElementById("incomplete-tasks").children[taskIndex];
+  var label = listItem.querySelector("label");
+  var editInput = listItem.querySelector("input[type=text]");
+
+  // toggle .editmode on the parent.
+  listItem.classList.toggle("editMode");
+
+  // If in editing mode, show the editInput and set its value
+  if (listItem.classList.contains("editMode")) {
+    editInput.style.display = "block";
+    label.style.display = "none";
+    editInput.value = tasks[taskIndex].value;
+    editInput.focus();
+  } else {
+    // If not in editing mode, show the label and set its text content
+    label.textContent = tasks[taskIndex].value;
+    label.style.display = "block";
+    editInput.style.display = "none";
+    tasks[taskIndex].value = editInput.value.trim(); // Update the task value
+    render();
+  }
+};
+
 var addTask = function () {
-  console.log("Add Task...");
   const task = taskInput.value.trim();
+  const deadline = deadlineInput.value;
 
   if (task === "") {
     alert("Please enter a todo");
     return;
   }
-  //push the task and re-render
+
   tasks.push({ value: task, isComplete: false });
   taskInput.value = "";
+  deadlineInput.value = ""; // Clear the deadline input after adding a task
   render();
 };
-
-//Edit an existing task.
-var editTask = function (that, taskIndex) {
-  console.log("Edit Task...");
-  console.log("Change 'edit' to 'save'");
-
-  const listItem = that.parentNode.parentNode;
-  //   console.log('ini itu listItem', listItem);
-  var editInput = listItem.querySelector("input[type=text]");
-  var label = listItem.querySelector("label");
-  //   console.log('ini itu editInput', editInput);
-  //   console.log('ini itu label', label);
-  var containsClass = listItem.classList.contains("editMode");
-  const editButtonIcon = listItem.getElementsByClassName("btn-edit");
-  //If class of the parent is .editmode
-  if (containsClass) {
-    //save the edited value and re-render
-    // Ensure the updated value is not blank
-    if (editInput.value !== "") {
-      tasks[taskIndex].value = editInput.value;
-    } else {
-      alert("Todo item new value cannot be blank.");
-    }
-    render();
-  } else {
-    //switch to .editmode
-    //label becomes the inputs value.
-    console.log("ini jalan");
-    editInput.value = label.innerText;
-    editButtonIcon[0].innerHTML = `<i class="ph-check-bold"></i>`;
-  }
-
-  //toggle .editmode on the parent.
-  listItem.classList.toggle("editMode");
-};
-
-var ajaxRequest = function () {
-  console.log("AJAX Request");
-};
-
-//The glue to hold it all together.
-
-//Set the click handler to the addTask function.
-addButton.addEventListener("click", addTask);
-addButton.addEventListener("click", ajaxRequest);
-
-//Set the enter keypress handler to the addTask function.
-taskInput.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") addTask();
-});
 
 var render = function () {
   let completedCount = 0;
   let pendingCount = 0;
   var headingTags = document.getElementsByTagName("h3");
-  var incompleteTaskHolder = document.getElementById("incomplete-tasks"); //ul of #incomplete-tasks
-  var completedTasksHolder = document.getElementById("completed-tasks"); //completed-tasks
+  var incompleteTaskHolder = document.getElementById("incomplete-tasks"); // ul of #incomplete-tasks
+  var completedTasksHolder = document.getElementById("completed-tasks"); // completed-tasks
 
   // clear task every render
   incompleteTaskHolder.innerHTML = "";
   completedTasksHolder.innerHTML = "";
 
   for (let i = tasks.length - 1; i >= 0; i--) {
-    const listItem = createNewTaskElement(
-      tasks[i].value,
-      tasks[i].isComplete,
-      i
-    );
     if (tasks[i].isComplete) {
       completedCount++;
       completedTasksHolder.appendChild(listItem);
@@ -180,17 +152,10 @@ var render = function () {
     }
   }
 
-  //save data to localStorage on every render
-  //   console.log('ini itu ', tasks);
+  // save data to localStorage on every render
   localStorage.setItem("taskData", JSON.stringify(tasks));
-  //refresh theme
+  // refresh theme
 };
 
 // initial render function
 render();
-
-// Issues with usabiliy don't get seen until they are in front of a human tester.
-
-//prevent creation of empty tasks.
-
-//Shange edit to save when you are in edit mode.
