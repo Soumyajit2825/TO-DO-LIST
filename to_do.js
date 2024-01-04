@@ -4,7 +4,7 @@ var today = new Date();
 var deadlineInput = document.getElementById("deadlineInput");
 addButton.addEventListener("click", function () {
   addTask();
-  ajaxRequest();
+  ajaxRequest(); // You can include this line if you want to call ajaxRequest after adding a task
 });
 
 // Set the enter keypress handler to the addTask function.
@@ -21,7 +21,7 @@ let tasks = [
 // get data from localStorage
 if (localStorage.getItem("taskData")) tasks = JSON.parse(localStorage.getItem("taskData"));
 
-var createNewTaskElement = function (taskString, isComplete, taskIndex) {
+var createNewTaskElement = function (taskObject, taskIndex) {
   var listItem = document.createElement("li");
   var actionContainer = document.createElement("div");
   var editInput = document.createElement("input");
@@ -29,42 +29,33 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
   editInput.value = taskObject.value;
   editInput.className = "edit-input"; // Add a class for identification
 
-  // input (checkbox)
   var checkBox = document.createElement("input");
   checkBox.type = "checkbox";
   checkBox.className = "chb";
-  checkBox.checked = isComplete;
+  checkBox.checked = taskObject.isComplete;
   checkBox.onchange = () => {
-    // toggle isComplete task data and re-render
     tasks[taskIndex].isComplete = !tasks[taskIndex].isComplete;
     render();
   };
 
-  // label
   var label = document.createElement("label");
-  label.innerText = taskString;
   label.className = "label-container";
   label.htmlFor = "chb";
 
-  // input (text)
-  var editInput = document.createElement("input");
-  editInput.type = "text";
+  // Display the deadline consistently
+  label.textContent = taskObject.value + (taskObject.deadline ? ' (Deadline: ' + taskObject.deadline + ')' : '');
 
-  // button.edit
   var editButton = document.createElement("button");
-  editButton.innerHTML = `<i class="ph-pencil"></i>`; // innerText encodes special characters, HTML does not.
+  editButton.innerHTML = `<i class="ph-pencil"></i>`;
   editButton.className = "btn-edit bg-button";
   editButton.onclick = function () {
     editTask(taskIndex);
-    editTask(taskIndex);
   };
 
-  // button.delete
   var deleteButton = document.createElement("button");
   deleteButton.innerHTML = `<i class="ph-trash"></i>`;
   deleteButton.className = "btn-delete bg-button";
   deleteButton.onclick = () => {
-    // delete from tasks and re-render
     tasks.splice(taskIndex, 1);
     render();
   };
@@ -96,30 +87,28 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
 var editTask = function (taskIndex) {
   var listItem = document.getElementById("incomplete-tasks").children[taskIndex];
   var label = listItem.querySelector("label");
-  var editInput = listItem.querySelector("input[type=text]");
+  var editInput = listItem.querySelector(".edit-input");
 
-  // toggle .editmode on the parent.
-  listItem.classList.toggle("editMode");
+  // Toggle the editing mode for the selected task
+  tasks[taskIndex].isEditing = !tasks[taskIndex].isEditing;
 
-  // If in editing mode, show the editInput and set its value
-  if (listItem.classList.contains("editMode")) {
+  if (tasks[taskIndex].isEditing) {
+    // If in editing mode, show the editInput and set its value
     editInput.style.display = "block";
     label.style.display = "none";
     editInput.value = tasks[taskIndex].value;
     editInput.focus();
   } else {
     // If not in editing mode, show the label and set its text content
-    label.textContent = tasks[taskIndex].value;
+    label.textContent = tasks[taskIndex].value + (tasks[taskIndex].deadline ? ' (Deadline: ' + tasks[taskIndex].deadline + ')' : '');
     label.style.display = "block";
     editInput.style.display = "none";
     tasks[taskIndex].value = editInput.value.trim(); // Update the task value
     render();
   }
 };
-
 var addTask = function () {
   const task = taskInput.value.trim();
-  const deadline = deadlineInput.value;
   const deadline = deadlineInput.value;
 
   if (task === "") {
@@ -127,25 +116,29 @@ var addTask = function () {
     return;
   }
 
-  tasks.push({ value: task, isComplete: false });
+  tasks.push({ value: task, deadline: deadline, isComplete: false, isEditing: false });
   taskInput.value = "";
-  deadlineInput.value = ""; // Clear the deadline input after adding a task
   deadlineInput.value = ""; // Clear the deadline input after adding a task
   render();
 };
 
-var render = function () {
-  let completedCount = 0;
-  let pendingCount = 0;
-  var headingTags = document.getElementsByTagName("h3");
-  var incompleteTaskHolder = document.getElementById("incomplete-tasks"); // ul of #incomplete-tasks
-  var completedTasksHolder = document.getElementById("completed-tasks"); // completed-tasks
-
-  // clear task every render
+var renderIncompleteTasks = function () {
+  var incompleteTaskHolder = document.getElementById("incomplete-tasks");
   incompleteTaskHolder.innerHTML = "";
+
+  for (let i = 0; i < tasks.length; i++) {
+    if (!tasks[i].isComplete) {
+      const listItem = createNewTaskElement(tasks[i], i);
+      incompleteTaskHolder.appendChild(listItem);
+    }
+  }
+};
+
+var renderCompletedTasks = function () {
+  var completedTasksHolder = document.getElementById("completed-tasks");
   completedTasksHolder.innerHTML = "";
 
-  for (let i = tasks.length - 1; i >= 0; i--) {
+  for (let i = 0; i < tasks.length; i++) {
     if (tasks[i].isComplete) {
       const listItem = createNewTaskElement(tasks[i], i);
       completedTasksHolder.appendChild(listItem);
@@ -170,9 +163,8 @@ var render = function () {
     }
   }
 
-  // save data to localStorage on every render
+  // Save data to localStorage on every render
   localStorage.setItem("taskData", JSON.stringify(tasks));
-  // refresh theme
 };
 
 // initial render function

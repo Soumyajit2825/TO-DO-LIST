@@ -43,11 +43,12 @@
     <div class="todo-container" id="todo-container" data-aos="fade-up-right" data-aos-duration="2000">
       <div class="add-todo" id="add">
         <input id="new-task" type="text" placeholder="Create Todo..." />
+        <input type="date" id="deadlineInput" />
         <button class="btn-add">Add</button>
       </div>
 
       <div class="incomplete-tasks-container" id="incomplete">
-        <h3 class="title">Todo</h3>
+        <h3 class="title">TODO</h3>
         <div class="incompleted_container">
           <ul id="incomplete-tasks">
             <li class="incomplete-task">
@@ -68,7 +69,7 @@
       </div>
 
       <div class="completed-tasks-container" id="complete">
-        <h3 class="title">Completed</h3>
+        <h3 class="title">COMPLETED</h3>
         <div class="completed_container">
           <ul id="completed-tasks">
             <li class="completed-task task">
@@ -100,8 +101,8 @@
       <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
     </g>
   </svg>
-  <script type="module" src="light-dark-mode.js"></script>
-  <script type="module" src="to_do.js"></script>
+  <script src="light-dark-mode.js"></script>
+  <script src="to_do.js"></script>
 </body>
 <script>
   AOS.init();
