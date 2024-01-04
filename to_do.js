@@ -14,18 +14,20 @@ taskInput.addEventListener("keypress", function (event) {
 
 // initial tasks data
 let tasks = [
-  { value: "Pay bills", isComplete: false },
-  { value: "See the Doctor", isComplete: true },
+  { value: "Pay bills", deadline: "2023-01-01", isComplete: false, isEditing: false },
+  { value: "See the Doctor", deadline: "2023-01-02", isComplete: true, isEditing: false },
 ];
 
 // get data from localStorage
-if (localStorage.getItem("taskData")) {
-  tasks = JSON.parse(localStorage.getItem("taskData"));
-}
+if (localStorage.getItem("taskData")) tasks = JSON.parse(localStorage.getItem("taskData"));
 
 var createNewTaskElement = function (taskString, isComplete, taskIndex) {
   var listItem = document.createElement("li");
   var actionContainer = document.createElement("div");
+  var editInput = document.createElement("input");
+  editInput.type = "text";
+  editInput.value = taskObject.value;
+  editInput.className = "edit-input"; // Add a class for identification
 
   // input (checkbox)
   var checkBox = document.createElement("input");
@@ -54,6 +56,7 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
   editButton.className = "btn-edit bg-button";
   editButton.onclick = function () {
     editTask(taskIndex);
+    editTask(taskIndex);
   };
 
   // button.delete
@@ -66,11 +69,16 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
     render();
   };
 
-  if (isComplete) {
-    listItem.className = "completed-task";
-    checkBox.checked = true;
+  if (taskObject.isComplete) listItem.className = "completed-task";
+  else listItem.className = "incomplete-task";
+
+  // If the task is in editing mode, show the editInput; otherwise, show the label
+  if (taskObject.isEditing) {
+    editInput.style.display = "block";
+    label.style.display = "none";
   } else {
-    listItem.className = "incomplete-task";
+    editInput.style.display = "none";
+    label.style.display = "block";
   }
 
   actionContainer.className = "action-container";
@@ -81,6 +89,7 @@ var createNewTaskElement = function (taskString, isComplete, taskIndex) {
   listItem.appendChild(label);
   listItem.appendChild(editInput);
   listItem.appendChild(actionContainer);
+
   return listItem;
 };
 
@@ -111,6 +120,7 @@ var editTask = function (taskIndex) {
 var addTask = function () {
   const task = taskInput.value.trim();
   const deadline = deadlineInput.value;
+  const deadline = deadlineInput.value;
 
   if (task === "") {
     alert("Please enter a todo");
@@ -119,6 +129,7 @@ var addTask = function () {
 
   tasks.push({ value: task, isComplete: false });
   taskInput.value = "";
+  deadlineInput.value = ""; // Clear the deadline input after adding a task
   deadlineInput.value = ""; // Clear the deadline input after adding a task
   render();
 };
@@ -136,14 +147,21 @@ var render = function () {
 
   for (let i = tasks.length - 1; i >= 0; i--) {
     if (tasks[i].isComplete) {
-      completedCount++;
+      const listItem = createNewTaskElement(tasks[i], i);
       completedTasksHolder.appendChild(listItem);
-    } else {
-      incompleteTaskHolder.appendChild(listItem);
-      pendingCount++;
     }
   }
+};
 
+var render = function () {
+  renderIncompleteTasks();
+  renderCompletedTasks();
+
+  // Update task counts
+  let completedCount = tasks.filter((task) => task.isComplete).length;
+  let pendingCount = tasks.filter((task) => !task.isComplete).length;
+
+  var headingTags = document.getElementsByTagName("h3");
   for (let element = 0; element < headingTags.length; element++) {
     if (headingTags[element].innerText.toLowerCase().includes("todo")) {
       headingTags[element].innerText = `Todo ${pendingCount}`;
