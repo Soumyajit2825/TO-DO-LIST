@@ -78,6 +78,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: auto; 
 }
 
 #new-task {
@@ -313,14 +314,6 @@ ul li.editMode label {
   html {
     font-size: 12px;
   }
-
-  .todo-container {
-    width: 100%;
-  }
-
-  .wrapper {
-    margin: 16px;
-  }
 }
 
 /* fixed the todo count dissapearing issue */
@@ -404,7 +397,7 @@ ul li.editMode label {
 /*Shrinking for mobile*/
 @media (max-width: 768px) {
   .waves {
-    height:40px;
+/*     height:40px; */
     min-height:40px;
   }
 }
