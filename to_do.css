@@ -5,7 +5,6 @@
   --body-color: #0c0c0c;
   --todo-bg: #ededed;
   --newtask-bg: transparent;
-  --add-bg: white;
   --green: #547340;
   --black: #0c0c0c;
   --grey: #373737;
@@ -67,9 +66,9 @@ input[type="text"] {
 /* Basic Style */
 body {
   font-family: "Lato", sans-serif;
-  height: 100vh;
+  height: 70vh;
   transition: 0.15s ease-out;
-  background-color: var(--body-bg);
+  background-color: white;
   color: var(--body-color);
 }
 
@@ -83,13 +82,15 @@ body {
 
 #new-task {
   font-size: 1.5rem;
-  background-color: var(--newtask-bg);
+  background-color: #c1f2d1c2;
 }
 
 .todo-container {
-  width: 900px;
+  max-width: 650px;
+  margin: 20px auto;
+  padding: 20px;
   background-color: var(--todo-bg);
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   border: 1px solid #373737;
 }
@@ -97,11 +98,23 @@ body {
 .add-todo {
   display: flex;
   justify-content: space-between;
-  background: var(--add-bg);
+  background-image: linear-gradient(rgba(160, 231, 160, 0.668),rgba(175, 226, 175, 0.756));
   align-items: center;
   gap: 8px;
   padding: 1rem;
   border-radius: 10px 10px 0 0px;
+}
+.add-todo input {
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.add-todo input {
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
 .add-todo input::placeholder {
@@ -130,19 +143,37 @@ body {
 
 .btn-add:hover {
   transform: translate(0px, -2px);
+  background-color: #668752d9;
 }
 
 .completed-tasks-container,
 .incomplete-tasks-container {
-  padding: 8px 16px;
   font-size: 1.2rem;
-  max-height: 310px;
+  background-image: linear-gradient(rgba(160, 231, 160, 0.668),rgba(175, 226, 175, 0.756));
+  border-radius: 5px;
+  height: 120px;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
   overflow-y: auto;
+}
+.incomplete-tasks-container{
+  border: 3px solid green;
+}
+.completed-tasks-container{
+  border: 3px solid green;
+}
+.incomplete-tasks-container{
+  border: 3px solid green;
+}
+.completed-tasks-container{
+  border: 3px solid green;
 }
 
 .title {
   margin-top: 1rem;
-  font-size: 2.5rem;
+  font-size: 2rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--green);
@@ -162,13 +193,14 @@ body {
 
 .completed-task label {
   text-decoration: line-through;
-  color: #a7a7a7;
+  /* color: #a7a7a7; */
 }
 
 .label-container {
   flex-grow: 1;
   word-break: break-all;
   margin: 0 16px 0 0;
+
 }
 
 .action-container {
@@ -288,5 +320,91 @@ ul li.editMode label {
 
   .wrapper {
     margin: 16px;
+  }
+}
+
+/* fixed the todo count dissapearing issue */
+.incompleted_container,
+.completed_container {
+  overflow-y: scroll;
+  max-height: 150px;
+}
+
+.incomplete-task,
+.completed-task {
+  display: flex;
+  flex-direction: row;
+  margin-right: 5px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+  
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.completed-task{
+  opacity: 40%;
+}
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:15vh;
+  margin-bottom:-7px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:150px;
+  background-color: #547340;
+}
+
+#waves{
+  rotate: 180deg;
+}
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height:40px;
+    min-height:40px;
   }
 }
