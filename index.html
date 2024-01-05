@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,64 +12,100 @@
   <link rel="stylesheet" href="to_do.css" type="text/css" media="screen" charset="utf-8" />
   <script src="https://unpkg.com/phosphor-icons"></script>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon.ico" />
+    <!-- ----AOS File----- -->
+  <link rel="stylesheet" href="aos/aos.css">
+  <script src="aos/aos.js"></script>
+
   <title>Todo App</title>
 </head>
 
 <body>
+  <header>
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+      </g>
+    </svg>
+  </header>
   <main class="wrapper">
-    <div class="dark-mode-slider">
+    <div class="dark-mode-slider" data-aos="zoom-in" data-aos-duration="4000">
       <input type="checkbox" class="checkbox" id="checkbox" />
       <label for="checkbox" class="label bi-brightness-high-fill" id="toggleDark">
         <div class="ball"></div>
       </label>
     </div>
-    <div class="todo-container" id="todo-container">
+    <div class="todo-container" id="todo-container" data-aos="fade-up-right" data-aos-duration="2000">
       <div class="add-todo" id="add">
         <input id="new-task" type="text" placeholder="Create Todo..." />
+        <input type="date" id="deadlineInput" />
         <button class="btn-add">Add</button>
       </div>
 
       <div class="incomplete-tasks-container" id="incomplete">
-        <h3 class="title">Todo <span id="todo-badge" class="badge" style="background-color: red;">1</span></h3>
-        <ul id="incomplete-tasks">
-          <li class="incomplete-task">
-            <input type="checkbox" />
-            <label class="label-container">Pay Bills</label>
-            <input type="text" />
-            <div class="action-container">
-              <button class="btn-edit bg-button">
-                <i class="ph-pencil"></i>
-              </button>
-              <button class="btn-delete bg-button">
-                <i class="ph-trash"></i>
-              </button>
-            </div>
-          </li>
-        </ul>
+        <h3 class="title">TODO</h3>
+        <div class="incompleted_container">
+          <ul id="incomplete-tasks">
+            <li class="incomplete-task">
+              <input type="checkbox" />
+              <label class="label-container">Pay Bills</label>
+              <input type="text" />
+              <div class="action-container">
+                <button class="btn-edit bg-button">
+                  <i class="ph-pencil"></i>
+                </button>
+                <button class="btn-delete bg-button">
+                  <i class="ph-trash"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="completed-tasks-container" id="complete">
-        <h3 class="title">Completed <span id="completed-badge" class="badge" style="background-color: blue;">1</span></h3>
-        <ul id="completed-tasks">
-          <li class="completed-task task">
-            <input type="checkbox" checked />
-            <label class="label-container">See the Doctor</label>
-            <input type="text" />
-            <div class="action-container">
-              <button class="btn-edit bg-button">
-                <i class="ph-pencil"></i>
-              </button>
-              <button class="btn-delete bg-button">
-                <i class="ph-trash"></i>
-              </button>
-            </div>
-          </li>
-        </ul>
+        <h3 class="title">COMPLETED</h3>
+        <div class="completed_container">
+          <ul id="completed-tasks">
+            <li class="completed-task task">
+              <input type="checkbox" checked />
+              <label class="label-container">See the Doctor</label>
+              <input type="text" />
+              <div class="action-container">
+                <button class="btn-edit bg-button">
+                  <i class="ph-pencil"></i>
+                </button>
+                <button class="btn-delete bg-button">
+                  <i class="ph-trash"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </main>
-
-  <script type="module" src="light-dark-mode.js"></script>
-  <script type="module" src="to_do.js"></script>
+  <svg class="waves" id="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+      <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+      <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+      <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+      <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+    </g>
+  </svg>
+  <script src="light-dark-mode.js"></script>
+  <script src="to_do.js"></script>
 </body>
+<script>
+  AOS.init();
+</script>
+
 </html>
