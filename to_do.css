@@ -72,6 +72,7 @@ body {
   color: var(--body-color);
 }
 
+
 .logo {
   width: 50px; /* Set the desired width */
   height: 50px; /* Set the desired height */
@@ -82,22 +83,22 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px;
+  padding: 0px;
 }
 
 .logo img {
   width: 150%;
   height: 100%;
-  
 }
 
 .wrapper {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
-  margin-top: -50px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #new-task {
@@ -404,7 +405,7 @@ ul li.editMode label {
 .waves {
   position:relative;
   width: 100%;
-  height:15vh;
+  height:10vh;
   margin-bottom:-7px; /*Fix for safari gap*/
   min-height:100px;
   max-height:150px;
