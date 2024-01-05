@@ -154,6 +154,9 @@ var render = function () {
   let completedCount = tasks.filter((task) => task.isComplete).length;
   let pendingCount = tasks.filter((task) => !task.isComplete).length;
 
+  let todoBadge = document.getElementById("todo-badge");
+  let completedBadge = document.getElementById("completed-badge");
+
   var headingTags = document.getElementsByTagName("h3");
   for (let element = 0; element < headingTags.length; element++) {
     if (headingTags[element].innerText.toLowerCase().includes("todo")) {
