@@ -178,7 +178,10 @@ body {
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--green);
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .incomplete-task,
@@ -294,6 +297,15 @@ ul li.editMode label {
   max-width: 900px;
   width: 100%;
   margin-inline: auto;
+}
+
+/* For styling badge */
+.badge{
+  padding: 5px 10px 5px 10px;
+  border-radius: 20px;
+  font-size: medium;
+  align-items: flex-start;
+  color: white;
 }
 
 /* Dark/Light mode toggler css ends here */

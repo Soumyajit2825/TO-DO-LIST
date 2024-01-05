@@ -154,12 +154,17 @@ var render = function () {
   let completedCount = tasks.filter((task) => task.isComplete).length;
   let pendingCount = tasks.filter((task) => !task.isComplete).length;
 
+  let todoBadge = document.getElementById("todo-badge");
+  let completedBadge = document.getElementById("completed-badge");
+
   var headingTags = document.getElementsByTagName("h3");
   for (let element = 0; element < headingTags.length; element++) {
     if (headingTags[element].innerText.toLowerCase().includes("todo")) {
-      headingTags[element].innerText = `Todo ${pendingCount}`;
+      // headingTags[element].innerText = `Todo ${pendingCount}`;
+      todoBadge.innerText = pendingCount // Updating innertext for todo-badge
     } else {
-      headingTags[element].innerText = `Completed ${completedCount}`;
+      // headingTags[element].innerText = `Completed ${completedCount}`;
+      completedBadge.innerText = completedCount // Updating innertext for completedtasks-badge
     }
   }
 
