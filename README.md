@@ -1,6 +1,23 @@
 # TO-DO-LIST
 A simple to-do-list webpage
 
+# BRIEF DESCRIPTION ABOUT THE PROJECT
+This project is tailored towards those getting started in web development. The tech stack used is rudimentary, consisting of HTML, CSS and JavaScript.
+
+# DESCRIPTION OF EACH OF THE COMPONENT FILES
+The bare bones of the website is given in the index.html and the styling is done by both the use of inline CSS and external CSS file.
+
+The workings of the website is contained in the light-dark-mode.js and to-do.ja files.
+
+As the names suggests, the light-dark-mode.js files shifts between light and dark modes. 
+
+![light mode][light mode.png]
+![dark mode][dark-mode.png]
+
+## working of to_do.js file
+
+The purpose of the this file is to facilitate the addition, deletion and editing of tasks. This is done using the CRUD operational paradigm i.e. Create, Read,  Update, Delete operations.  
+
 ## How to Contribute
 
 - Take a look at the Existing [Issues] or create your own!
