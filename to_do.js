@@ -1,7 +1,12 @@
 var taskInput = document.getElementById("new-task");
+
 var addButton = document.querySelector(".btn-add");
 var today = new Date();
 var deadlineInput = document.getElementById("deadlineInput");
+
+const filterDropdown = document.getElementById("filterDropdown");
+const reset = document.querySelector(".reset-btn");
+
 addButton.addEventListener("click", function () {
   addTask();
   ajaxRequest(); // You can include this line if you want to call ajaxRequest after adding a task
@@ -14,12 +19,23 @@ taskInput.addEventListener("keypress", function (event) {
 
 // initial tasks data
 let tasks = [
-  { value: "Pay bills", deadline: "2023-01-01", isComplete: false, isEditing: false },
-  { value: "See the Doctor", deadline: "2023-01-02", isComplete: true, isEditing: false },
+  {
+    value: "Pay bills",
+    deadline: "2023-01-01",
+    isComplete: false,
+    isEditing: false,
+  },
+  {
+    value: "See the Doctor",
+    deadline: "2023-01-02",
+    isComplete: true,
+    isEditing: false,
+  },
 ];
 
 // get data from localStorage
-if (localStorage.getItem("taskData")) tasks = JSON.parse(localStorage.getItem("taskData"));
+if (localStorage.getItem("taskData"))
+  tasks = JSON.parse(localStorage.getItem("taskData"));
 
 var createNewTaskElement = function (taskObject, taskIndex) {
   var listItem = document.createElement("li");
@@ -43,7 +59,9 @@ var createNewTaskElement = function (taskObject, taskIndex) {
   label.htmlFor = "chb";
 
   // Display the deadline consistently
-  label.textContent = taskObject.value + (taskObject.deadline ? ' (Deadline: ' + taskObject.deadline + ')' : '');
+  label.textContent =
+    taskObject.value +
+    (taskObject.deadline ? " (Deadline: " + taskObject.deadline + ")" : "");
 
   var editButton = document.createElement("button");
   editButton.innerHTML = `<i class="ph-pencil"></i>`;
@@ -85,7 +103,8 @@ var createNewTaskElement = function (taskObject, taskIndex) {
 };
 
 var editTask = function (taskIndex) {
-  var listItem = document.getElementById("incomplete-tasks").children[taskIndex];
+  var listItem =
+    document.getElementById("incomplete-tasks").children[taskIndex];
   var label = listItem.querySelector("label");
   var editInput = listItem.querySelector(".edit-input");
 
@@ -100,7 +119,11 @@ var editTask = function (taskIndex) {
     editInput.focus();
   } else {
     // If not in editing mode, show the label and set its text content
-    label.textContent = tasks[taskIndex].value + (tasks[taskIndex].deadline ? ' (Deadline: ' + tasks[taskIndex].deadline + ')' : '');
+    label.textContent =
+      tasks[taskIndex].value +
+      (tasks[taskIndex].deadline
+        ? " (Deadline: " + tasks[taskIndex].deadline + ")"
+        : "");
     label.style.display = "block";
     editInput.style.display = "none";
     tasks[taskIndex].value = editInput.value.trim(); // Update the task value
@@ -116,7 +139,12 @@ var addTask = function () {
     return;
   }
 
-  tasks.push({ value: task, deadline: deadline, isComplete: false, isEditing: false });
+  tasks.push({
+    value: task,
+    deadline: deadline,
+    isComplete: false,
+    isEditing: false,
+  });
   taskInput.value = "";
   deadlineInput.value = ""; // Clear the deadline input after adding a task
   render();
@@ -166,6 +194,32 @@ var render = function () {
   // Save data to localStorage on every render
   localStorage.setItem("taskData", JSON.stringify(tasks));
 };
+
+filterDropdown.addEventListener("change", () => {
+  const selectedFilter = filterDropdown.value;
+
+  document.querySelector("option.active").classList.remove("active");
+
+  if (selectedFilter === "pending") {
+    document.querySelector('option[value="pending"]').classList.add("active");
+    document.getElementById("incomplete").style.display = "block";
+    document.getElementById("complete").style.display = "none";
+  } else if (selectedFilter === "completed") {
+    document.querySelector('option[value="completed"]').classList.add("active");
+    document.getElementById("incomplete").style.display = "none";
+    document.getElementById("complete").style.display = "block";
+  } else {
+    // Show both containers for "All" filter
+    document.querySelector('option[value="all"]').classList.add("active");
+    document.getElementById("incomplete").style.display = "block";
+    document.getElementById("complete").style.display = "block";
+  }
+});
+
+reset.addEventListener("click", () => {
+  tasks = [];
+  render();
+});
 
 // initial render function
 render();

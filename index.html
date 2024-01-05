@@ -20,6 +20,10 @@
 </head>
 
 <body>
+  <div class="logo">
+    <img src="./images/logo.png" alt="Logo" />
+  </div>
+  
   <header>
     <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
       <defs>
@@ -46,6 +50,21 @@
         <input type="date" id="deadlineInput" />
         <button class="btn-add">Add</button>
       </div>
+
+      <div class="controls">
+        <div class="filters">
+          <label for="filterDropdown">Filter: </label>
+          <select id="filterDropdown">
+            <option value="all" class="active">All</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        
+  
+        <button class="reset-btn">Reset All</button>
+      </div>
+      
 
       <div class="incomplete-tasks-container" id="incomplete">
         <h3 class="title">TODO</h3>

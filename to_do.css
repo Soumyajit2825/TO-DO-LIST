@@ -72,12 +72,32 @@ body {
   color: var(--body-color);
 }
 
+.logo {
+  width: 50px; /* Set the desired width */
+  height: 50px; /* Set the desired height */
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.logo img {
+  width: 150%;
+  height: 100%;
+  
+}
+
 .wrapper {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: -50px;
 }
 
 #new-task {
@@ -342,6 +362,39 @@ ul li.editMode label {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555;
+}
+
+.controls{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 25px;
+  border-bottom: 1px solid #ccc;
+}
+
+.filters span{
+  cursor: pointer;
+  margin: 0 8px;
+  font-size: 17px;
+}
+
+.filters span:first-child{
+  margin-left: 0; 
+}
+
+.filters span.active{
+  color: #3c87ff;
+}
+
+.controls .reset-btn{
+  outline: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 4px;
+  padding: 7px 13px;
+  background: #3c87ff;
 }
 
 .completed-task{
