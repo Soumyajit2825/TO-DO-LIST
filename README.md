@@ -11,7 +11,7 @@ The workings of the website is contained in the light-dark-mode.js and to-do.ja 
 
 As the names suggests, the light-dark-mode.js files shifts between light and dark modes. 
 
-![light mode][light mode.png]
+![light mode][light-mode.png]
 ![dark mode][dark-mode.png]
 
 ## working of to_do.js file
