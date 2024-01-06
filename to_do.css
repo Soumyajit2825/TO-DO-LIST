@@ -77,6 +77,7 @@ body {
   width: 50px; /* Set the desired width */
   height: 50px; /* Set the desired height */
   margin-right: 10px; /* Adjust the margin as needed */
+  object-fit: cover;
 }
 
 header {
