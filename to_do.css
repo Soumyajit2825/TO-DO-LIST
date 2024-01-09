@@ -79,6 +79,7 @@ body {
   align-items: center;
   flex-direction: column;
   margin: auto; 
+  margin-bottom: 5px;
 }
 
 #new-task {
@@ -306,6 +307,39 @@ ul li.editMode label {
   font-size: medium;
   align-items: flex-start;
   color: white;
+}
+
+.controls{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 25px;
+  border-bottom: 1px solid #ccc;
+}
+
+.filters span{
+  cursor: pointer;
+  margin: 0 8px;
+  font-size: 17px;
+}
+
+.filters span:first-child{
+  margin-left: 0; 
+}
+
+.filters span.active{
+  color: #3c87ff;
+}
+
+.controls .reset-btn{
+  outline: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 4px;
+  padding: 7px 13px;
+  background: #3c87ff;
 }
 
 /* Dark/Light mode toggler css ends here */
