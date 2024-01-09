@@ -47,6 +47,22 @@
         <button class="btn-add">Add</button>
       </div>
 
+
+      <div class="controls">
+        <div class="filters">
+          <label for="filterDropdown">Filter: </label>
+          <select id="filterDropdown">
+            <option value="all" class="active">All</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        
+  
+        <button class="reset-btn">Reset All</button>
+      </div>
+
+
       <div class="incomplete-tasks-container" id="incomplete">
         <h3 class="title">TODO <span id="todo-badge" class="badge rounded-pill" style="background-color:red;">1</span></h3>
         <div class="incompleted_container">
