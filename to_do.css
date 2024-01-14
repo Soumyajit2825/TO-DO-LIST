@@ -117,13 +117,6 @@ body {
   font-size: 16px;
 }
 
-.add-todo input {
-  flex-grow: 1;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
 .add-todo input::placeholder {
   color: rgba(128, 128, 128, 0.8);
   font-weight: 500;
@@ -173,17 +166,8 @@ body {
   border: 3px solid green;
 }
 
-.incomplete-tasks-container {
-  border: 3px solid green;
-}
-
-.completed-tasks-container {
-  border: 3px solid green;
-}
-
 .title {
   margin-top: 1rem;
-  font-size: 2rem;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
