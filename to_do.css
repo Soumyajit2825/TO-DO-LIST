@@ -80,8 +80,9 @@ body {
   align-items: center;
   flex-direction: column;
   margin: auto;
-  margin-bottom: 5px;
+  padding-bottom: 5px;
   max-width: 100%;
+  box-sizing: border-box;
 }
 
 #new-task {
@@ -452,4 +453,8 @@ ul li.editMode label {
     /*     height:40px; */
     min-height: 40px;
   }
+}
+
+.wrapper.dark {
+  background: #171717;
 }
