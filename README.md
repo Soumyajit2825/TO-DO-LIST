@@ -1,4 +1,27 @@
-# TO-DO-LIST
+<div align="center"><img src="Readme_logo.png"/></div>
+
+# <div align="center">TO-DO-LIST</div>
+<div align="center">
+ <p>
+
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/Soumyajit2825/TO-DO-LIST)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)
+![GitHub Repo stars](https://img.shields.io/github/stars/Soumyajit2825/TO-DO-LIST)
+![GitHub contributors](https://img.shields.io/github/contributors/Soumyajit2825/TO-DO-LIST)
+![GitHub last commit](https://img.shields.io/github/last-commit/Soumyajit2825/TO-DO-LIST)
+![GitHub repo size](https://img.shields.io/github/repo-size/Soumyajit2825/TO-DO-LIST)
+![GitHub forks](https://img.shields.io/github/forks/Soumyajit2825/TO-DO-LIST)
+![Github](https://img.shields.io/github/license/Soumyajit2825/TO-DO-LIST)
+![GitHub issues](https://img.shields.io/github/issues/Soumyajit2825/TO-DO-LIST)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/Soumyajit2825/TO-DO-LIST)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Soumyajit2825/TO-DO-LIST)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/Soumyajit2825/TO-DO-LIST)
+
+ </p>
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Soumyajit2825/TO-DO-LIST&type=Date)](https://star-history.com/#Soumyajit2825/TO-DO-LIST&Date)
+
+ </div>
 A simple to-do-list webpage
 
 # BRIEF DESCRIPTION ABOUT THE PROJECT
