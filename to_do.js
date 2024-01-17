@@ -4,6 +4,7 @@ var today = new Date();
 var deadlineInput = document.getElementById("deadlineInput");
 const filterDropdown = document.getElementById("filterDropdown");
 const reset = document.querySelector(".reset-btn");
+let popup = document.getElementById("popup");
 addButton.addEventListener("click", function () {
   addTask();
   ajaxRequest(); // You can include this line if you want to call ajaxRequest after adding a task
@@ -49,7 +50,16 @@ var createNewTaskElement = function (taskObject, taskIndex) {
   checkBox.onchange = () => {
     tasks[taskIndex].isComplete = !tasks[taskIndex].isComplete;
     render();
+    // Display an alert when the checkbox is checked
+    if (checkBox.checked) {
+      // alert("Nice");
+      document.getElementsByClassName("waves")[0].style.display = "none";
+      document.getElementsByClassName("waves")[1].style.display = "none";
+      document.body.classList.add("extraclass");
+      popup.classList.add("open-popup");
+    }
   };
+
 
   var label = document.createElement("label");
   label.className = "label-container";
@@ -98,7 +108,12 @@ var createNewTaskElement = function (taskObject, taskIndex) {
 
   return listItem;
 };
-
+function closePopup() {
+  document.getElementsByClassName("waves")[0].style.display = "block";
+  document.getElementsByClassName("waves")[1].style.display = "block";
+  document.body.classList.remove("extraclass");
+  popup.classList.remove("open-popup");
+}
 var editTask = function (taskIndex) {
   var listItem =
     document.getElementById("incomplete-tasks").children[taskIndex];

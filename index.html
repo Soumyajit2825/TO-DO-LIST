@@ -18,6 +18,12 @@
 
   <title>Todo App</title>
 </head>
+<div class="popup" id="popup">
+  <img src="tick.png" alt="">
+  <h2>Congratulations!</h2>
+  <p>You have successfully completed your work.</p>
+  <button type="button" onclick="closePopup()">OK</button>
+</div>
 
 <body>
   <header>
@@ -34,6 +40,7 @@
       </g>
     </svg>
   </header>
+
   <main class="wrapper">
     <div class="dark-mode-slider" data-aos="zoom-in" data-aos-duration="4000">
       <input type="checkbox" class="checkbox" id="checkbox" />
@@ -122,6 +129,7 @@
     </g>
   </svg>
   <script src="light-dark-mode.js"></script>
+  <script src="rewards.js"></script>
   <script src="to_do.js"></script>
 </body>
 <script>
